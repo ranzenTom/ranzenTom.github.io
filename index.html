@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tom [Lastname] - Research Scientist</title>
+    <style>
+        /* --- CSS STYLES --- */
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --text-color: #333;
+            --bg-color: #fcfcfc;
+            --container-width: 800px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* The Banner Image */
+        .banner {
+            width: 100%;
+            height: 250px;
+            background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop'); /* Replace with your banner URL */
+            background-size: cover;
+            background-position: center;
+            background-color: var(--primary-color);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px 50px;
+            position: relative;
+        }
+
+        /* Profile Section (Overlapping the Banner) */
+        .profile-header {
+            display: flex;
+            align-items: flex-end;
+            margin-top: -75px; /* Overlaps the banner */
+            margin-bottom: 30px;
+            gap: 25px;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background-color: #ddd;
+            background-image: url('https://github.com/ranzenTom.png'); /* Pulls your GitHub Avatar automatically */
+            background-size: cover;
+            flex-shrink: 0;
+        }
+
+        .profile-info h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            color: var(--primary-color);
+        }
+
+        .profile-info p {
+            margin: 5px 0 0;
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        /* Social Links */
+        .social-links {
+            margin-top: 10px;
+        }
+        .social-links a {
+            text-decoration: none;
+            color: var(--accent-color);
+            margin-right: 15px;
+            font-weight: 600;
+        }
+        .social-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Section Styling */
+        section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-top: 40px;
+            color: var(--primary-color);
+        }
+
+        /* Publication List Styling */
+        .paper {
+            margin-bottom: 20px;
+        }
+        .paper-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        .paper-meta {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        .paper-links a {
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            margin-right: 10px;
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        .paper-links a:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .profile-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                margin-top: -75px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="banner"></div>
+
+    <div class="container">
+        
+        <div class="profile-header">
+            <div class="profile-pic"></div>
+            <div class="profile-info">
+                <h1>Tom [Lastname]</h1>
+                <p>Staff Research Scientist @ TechCompany</p>
+                <div class="social-links">
+                    <a href="https://github.com/ranzenTom">GitHub</a>
+                    <a href="https://scholar.google.com/">Google Scholar</a>
+                    <a href="https://linkedin.com/">LinkedIn</a>
+                    <a href="mailto:your.email@example.com">Email</a>
+                </div>
+            </div>
+        </div>
+
+        <section id="about">
+            <h2>About</h2>
+            <p>
+                I am a Staff Research Scientist at <strong>[Company Name]</strong>, working on [Research Topic]. 
+                Previously, I was a researcher at [Previous Lab/University]. My research interests focus on large language models, 
+                reinforcement learning, and [Topic C].
+            </p>
+            <p>
+                I received my PhD from [University] advised by [Advisor Name].
+            </p>
+        </section>
+
+        <section id="news">
+            <h2>News</h2>
+            <ul>
+                <li><strong>Sep 2024:</strong> Our paper on <em>Generative Agents</em> was accepted to NeurIPS!</li>
+                <li><strong>Jan 2024:</strong> Gave a talk at [Conference Name] about efficiency in Transformers.</li>
+            </ul>
+        </section>
+
+        <section id="publications">
+            <h2>Selected Publications</h2>
+            
+            <div class="paper">
+                <div class="paper-title">Title of Your Most Recent Impactful Paper</div>
+                <div class="paper-meta">
+                    <strong>Tom Lastname</strong>, Co-author One, Co-author Two.<br>
+                    <em>Conference on Computer Vision and Pattern Recognition (CVPR), 2024.</em>
+                </div>
+                <div class="paper-links">
+                    <a href="#">PDF</a>
+                    <a href="#">Code</a>
+                    <a href="#">Project Page</a>
+                </div>
+            </div>
+
+            <div class="paper">
+                <div class="paper-title">Another Great Paper Title Here</div>
+                <div class="paper-meta">
+                    Co-author One, <strong>Tom Lastname</strong>.<br>
+                    <em>International Conference on Machine Learning (ICML), 2023.</em>
+                </div>
+                <div class="paper-links">
+                    <a href="#">PDF</a>
+                    <a href="#">Code</a>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+</body>
+</html>
