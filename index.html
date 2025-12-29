@@ -3,115 +3,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tom [Lastname] - Research Scientist</title>
+    <title>Thomas Pierrot - Staff Research Scientist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* --- CSS STYLES --- */
         :root {
             --primary-color: #2c3e50;
-            --accent-color: #3498db;
-            --text-color: #333;
-            --bg-color: #fcfcfc;
-            --container-width: 800px;
+            --accent-color: #4a7c7e;
+            --text-color: #3a3a3a;
+            --text-muted: #6b6b6b;
+            --bg-color: #fafafa;
+            --container-width: 1000px;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 17px;
+            line-height: 1.7;
             color: var(--text-color);
             background-color: var(--bg-color);
             margin: 0;
             padding: 0;
         }
 
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 600;
+        }
+
         /* The Banner Image */
         .banner {
             width: 100%;
-            height: 250px;
-            background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop'); /* Replace with your banner URL */
-            background-size: cover;
-            background-position: center;
+            overflow: hidden;
+            position: relative;
             background-color: var(--primary-color);
+        }
+        .banner picture {
+            display: block;
+            width: 100%;
+        }
+        .banner img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .banner::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to top, var(--bg-color), transparent);
+            pointer-events: none;
         }
 
         /* Main Container */
         .container {
             max-width: var(--container-width);
             margin: 0 auto;
-            padding: 0 20px 50px;
+            padding: 0 40px 80px;
             position: relative;
         }
 
-        /* Profile Section (Overlapping the Banner) */
+        /* Profile Section */
         .profile-header {
             display: flex;
-            align-items: flex-end;
-            margin-top: -75px; /* Overlaps the banner */
-            margin-bottom: 30px;
-            gap: 25px;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-top: -70px;
+            margin-bottom: 50px;
+            gap: 16px;
         }
 
         .profile-pic {
-            width: 150px;
-            height: 150px;
+            width: 170px;
+            height: 170px;
             border-radius: 50%;
             border: 5px solid white;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            background-color: #ddd;
-            background-image: url('https://github.com/ranzenTom.png'); /* Pulls your GitHub Avatar automatically */
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            background-color: #e8e8e8;
+            background-image: url('profile_picture.jpg');
             background-size: cover;
+            background-position: center;
             flex-shrink: 0;
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .profile-info h1 {
             margin: 0;
-            font-size: 2.2rem;
-            color: white; 
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Optional: Adds a shadow to make it readable on any image */
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: -0.02em;
         }
 
         .profile-info p {
-            margin: 5px 0 0;
+            margin: 8px 0 0;
             font-size: 1.1rem;
-            color: #666;
+            color: var(--text-muted);
+            font-weight: 500;
         }
 
-        /* Social Links */
         .social-links {
-            margin-top: 10px;
+            margin-top: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
         }
         .social-links a {
             text-decoration: none;
             color: var(--accent-color);
-            margin-right: 15px;
             font-weight: 600;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+        .social-links a i {
+            font-size: 1.1rem;
         }
         .social-links a:hover {
-            text-decoration: underline;
+            color: var(--primary-color);
+            transform: translateY(-1px);
         }
 
         /* Section Styling */
         section {
-            margin-bottom: 40px;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        section p {
+            text-align: left;
+        }
+
+        section ul {
+            display: inline-block;
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        section li {
+            margin-bottom: 12px;
         }
 
         h2 {
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-            margin-top: 40px;
+            font-size: 1.75rem;
+            margin-top: 60px;
+            margin-bottom: 24px;
             color: var(--primary-color);
+            letter-spacing: -0.01em;
         }
 
         /* Publication List Styling */
         .paper {
-            margin-bottom: 20px;
+            margin-bottom: 28px;
+            padding: 20px 24px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            transition: box-shadow 0.2s ease;
+            text-align: left;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .paper:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
         }
         .paper-title {
-            font-weight: 700;
-            font-size: 1.1rem;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 600;
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+            color: var(--primary-color);
         }
         .paper-meta {
-            color: #666;
+            color: var(--text-muted);
             font-size: 0.95rem;
+            margin-bottom: 10px;
+            line-height: 1.6;
         }
         .paper-links a {
             font-size: 0.85rem;
@@ -119,8 +202,9 @@
             margin-right: 10px;
             text-decoration: none;
             border: 1px solid var(--accent-color);
-            padding: 2px 8px;
-            border-radius: 4px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            transition: all 0.25s ease;
         }
         .paper-links a:hover {
             background-color: var(--accent-color);
@@ -128,19 +212,52 @@
         }
 
         /* Responsive Design */
+        @media (max-width: 900px) {
+            .container {
+                padding: 0 30px 60px;
+            }
+            .profile-pic {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
         @media (max-width: 600px) {
+            .container {
+                padding: 0 20px 50px;
+            }
             .profile-header {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                margin-top: -75px;
+                margin-top: -50px;
+            }
+            .profile-pic {
+                width: 130px;
+                height: 130px;
+            }
+            .profile-info h1 {
+                font-size: 2rem;
+            }
+            .social-links {
+                gap: 14px;
+            }
+            .social-links a {
+                font-size: 0.95rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+                margin-top: 40px;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="banner"></div>
+    <div class="banner">
+        <picture>
+            <source media="(min-width: 1200px)" srcset="banner_desktop.jpeg">
+            <source media="(min-width: 768px)" srcset="banner_tablet.jpeg">
+            <img src="banner_mobile.jpeg" alt="NYC skyline with neural network overlay">
+        </picture>
+    </div>
 
     <div class="container">
         
@@ -148,12 +265,13 @@
             <div class="profile-pic"></div>
             <div class="profile-info">
                 <h1>Thomas Pierrot</h1>
-                <p>Staff Research Scientist @ TechCompany</p>
+                <p>Staff Research Scientist @ InstaDeep</p>
                 <div class="social-links">
-                    <a href="https://github.com/ranzenTom">GitHub</a>
-                    <a href="https://scholar.google.com/">Google Scholar</a>
-                    <a href="https://linkedin.com/">LinkedIn</a>
-                    <a href="mailto:your.email@example.com">Email</a>
+                    <a href="https://scholar.google.com/citations?user=thomas-pierrot-120a43128"><i class="fa-solid fa-graduation-cap"></i> Google Scholar</a>
+                    <a href="https://github.com/ranzenTom"><i class="fa-brands fa-github"></i> GitHub</a>
+                    <a href="https://www.linkedin.com/in/thomas-pierrot-120a43128/"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                    <a href="https://x.com/thomas_pierrot"><i class="fa-brands fa-x-twitter"></i> Twitter</a>
+                    <a href="mailto:tvg.pierrot@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
                 </div>
             </div>
         </div>
@@ -161,20 +279,23 @@
         <section id="about">
             <h2>About</h2>
             <p>
-                I am a Staff Research Scientist at <strong>[Company Name]</strong>, working on [Research Topic]. 
-                Previously, I was a researcher at [Previous Lab/University]. My research interests focus on large language models, 
-                reinforcement learning, and [Topic C].
+                I am a Staff Research Scientist and Manager at <strong>InstaDeep (BioNTech Group)</strong>, 
+                where I lead the Genomics AI research program. My work focuses on building large-scale foundation models for 
+                genomics and molecular biology (DNA/RNA), as well as deploying them in real-world biotech settings.
             </p>
             <p>
-                I received my PhD from [University] advised by [Advisor Name].
+                My broader research interests include <strong>Deep Reinforcement Learning</strong>, <strong>Large Language Models</strong>, 
+                and <strong>Neuroevolution</strong>. I previously completed my PhD at Sorbonne University, focusing on sample efficiency in Deep RL, 
+                and collaborated with Google DeepMind and Imperial College London.
             </p>
         </section>
 
         <section id="news">
             <h2>News</h2>
             <ul>
-                <li><strong>Sep 2024:</strong> Our paper on <em>Generative Agents</em> was accepted to NeurIPS!</li>
-                <li><strong>Jan 2024:</strong> Gave a talk at [Conference Name] about efficiency in Transformers.</li>
+                <li><strong>2025:</strong> Our paper <em>"A multimodal conversational agent for DNA, RNA and protein tasks"</em> was featured on the cover of <strong>Nature Machine Intelligence</strong>!</li>
+                <li><strong>2025:</strong> <em>"Annotating the genome at single-nucleotide resolution"</em> accepted to <strong>Nature Methods</strong>.</li>
+                <li><strong>2024:</strong> The <em>Nucleotide Transformer</em> paper is now published in <strong>Nature Methods</strong>.</li>
             </ul>
         </section>
 
@@ -182,27 +303,48 @@
             <h2>Selected Publications</h2>
             
             <div class="paper">
-                <div class="paper-title">Title of Your Most Recent Impactful Paper</div>
+                <div class="paper-title">A multimodal conversational agent for DNA, RNA and protein tasks</div>
                 <div class="paper-meta">
-                    <strong>Tom Lastname</strong>, Co-author One, Co-author Two.<br>
-                    <em>Conference on Computer Vision and Pattern Recognition (CVPR), 2024.</em>
+                    Bernardo P. de Almeida, Guillaume Richard, Hugo Dalla-Torre, ..., <strong>Thomas Pierrot</strong>.<br>
+                    <em>Nature Machine Intelligence (Cover Article), 2025.</em>
                 </div>
                 <div class="paper-links">
-                    <a href="#">PDF</a>
-                    <a href="#">Code</a>
-                    <a href="#">Project Page</a>
+                    <a href="https://www.nature.com/articles/s42256-025-01047-1">Article</a>
                 </div>
             </div>
 
             <div class="paper">
-                <div class="paper-title">Another Great Paper Title Here</div>
+                <div class="paper-title">The Nucleotide Transformer: Building the Genome's Language Model</div>
                 <div class="paper-meta">
-                    Co-author One, <strong>Tom Lastname</strong>.<br>
-                    <em>International Conference on Machine Learning (ICML), 2023.</em>
+                    Hugo Dalla-Torre, ..., Marie Lopez, <strong>Thomas Pierrot</strong>.<br>
+                    <em>Nature Methods, 2024.</em>
                 </div>
                 <div class="paper-links">
-                    <a href="#">PDF</a>
+                    <a href="https://www.nature.com/articles/s41592-024-02523-z">Article</a>
                     <a href="#">Code</a>
+                </div>
+            </div>
+
+            <div class="paper">
+                <div class="paper-title">Evolving Populations of Diverse RL Agents with MAP-Elites</div>
+                <div class="paper-meta">
+                    <strong>Thomas Pierrot</strong>, Arthur Flajolet.<br>
+                    <em>International Conference on Learning Representations (ICLR), 2023.</em>
+                </div>
+                <div class="paper-links">
+                    <a href="https://openreview.net/pdf/7647093a5e985828f881513eb78bf7d36bde7a04.pdf">PDF</a>
+                    <a href="https://openreview.net/forum?id=6BHlZgyPOZY">OpenReview</a>
+                </div>
+            </div>
+            
+             <div class="paper">
+                <div class="paper-title">Learning Compositional Neural Programs with Recursive Tree Search and Planning</div>
+                <div class="paper-meta">
+                    <strong>Thomas Pierrot</strong>, Guillaume Ligner, Scott Reed, ..., Nando de Freitas.<br>
+                    <em>NeurIPS (Spotlight), 2019.</em>
+                </div>
+                <div class="paper-links">
+                    <a href="https://shorturl.at/au4qg">PDF</a>
                 </div>
             </div>
 
