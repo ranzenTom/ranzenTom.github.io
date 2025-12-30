@@ -253,9 +253,9 @@
 
     <div class="banner">
         <picture>
-            <source media="(min-width: 1200px)" srcset="banner_desktop.jpeg">
-            <source media="(min-width: 768px)" srcset="banner_tablet.jpeg">
-            <img src="banner_mobile.jpeg" alt="NYC skyline with neural network overlay">
+            <source media="(min-width: 1200px)" srcset="" id="banner-desktop">
+            <source media="(min-width: 768px)" srcset="" id="banner-tablet">
+            <img src="" alt="NYC skyline with neural network overlay" id="banner-mobile">
         </picture>
     </div>
 
@@ -351,5 +351,25 @@
         </section>
     </div>
 
+    <script>
+        (function() {
+            const hour = new Date().getHours();
+            let timeOfDay;
+            
+            if (hour >= 7 && hour < 10) {
+                timeOfDay = 'morning';
+            } else if (hour >= 10 && hour < 17) {
+                timeOfDay = 'day';
+            } else if (hour >= 17 && hour < 20) {
+                timeOfDay = 'afternoon';
+            } else {
+                timeOfDay = 'night';
+            }
+            
+            document.getElementById('banner-desktop').srcset = `banner_desktop_${timeOfDay}.jpeg`;
+            document.getElementById('banner-tablet').srcset = `banner_tablet_${timeOfDay}.jpeg`;
+            document.getElementById('banner-mobile').src = `banner_mobile_${timeOfDay}.jpeg`;
+        })();
+    </script>
 </body>
 </html>
