@@ -16,6 +16,7 @@
             --text-color: #3a3a3a;
             --text-muted: #6b6b6b;
             --bg-color: #fafafa;
+            --bg-alt: #f2f3f4;
             --card-bg: #ffffff;
             --border-color: rgba(0,0,0,0.1);
             --container-width: 1000px;
@@ -27,6 +28,7 @@
             --text-color: #e0e0e0;
             --text-muted: #a0a0a0;
             --bg-color: #1a1a1a;
+            --bg-alt: #242424;
             --card-bg: #2a2a2a;
             --border-color: rgba(255,255,255,0.1);
         }
@@ -73,12 +75,19 @@
             pointer-events: none;
         }
 
-        /* Main Container */
-        .container {
+        /* Profile Container - keeps profile header centered with banner overlap */
+        .profile-container {
             max-width: var(--container-width);
             margin: 0 auto;
-            padding: 0 40px 80px;
+            padding: 0 40px;
             position: relative;
+        }
+
+        /* Section Content - centers content within full-width sections */
+        .section-content {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 40px;
         }
 
         /* Profile Section */
@@ -88,7 +97,7 @@
             align-items: center;
             text-align: center;
             margin-top: -70px;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
             gap: 16px;
         }
 
@@ -151,10 +160,20 @@
             transform: translateY(-1px);
         }
 
-        /* Section Styling */
+        /* Section Styling - Full width with alternating backgrounds */
         section {
-            margin-bottom: 50px;
+            width: 100%;
+            padding: 60px 0;
             text-align: center;
+            background-color: var(--bg-color);
+        }
+
+        section:nth-of-type(even) {
+            background-color: var(--bg-alt);
+        }
+
+        section:last-of-type {
+            padding-bottom: 80px;
         }
 
         section p {
@@ -173,7 +192,7 @@
 
         h2 {
             font-size: 1.75rem;
-            margin-top: 60px;
+            margin-top: 0;
             margin-bottom: 24px;
             color: var(--primary-color);
             letter-spacing: -0.01em;
@@ -403,8 +422,15 @@
 
         /* Responsive Design */
         @media (max-width: 900px) {
-            .container {
-                padding: 0 30px 60px;
+            .profile-container,
+            .section-content {
+                padding: 0 30px;
+            }
+            section {
+                padding: 50px 0;
+            }
+            section:last-of-type {
+                padding-bottom: 60px;
             }
             .profile-pic {
                 width: 150px;
@@ -413,8 +439,15 @@
         }
 
         @media (max-width: 600px) {
-            .container {
-                padding: 0 20px 50px;
+            .profile-container,
+            .section-content {
+                padding: 0 20px;
+            }
+            section {
+                padding: 40px 0;
+            }
+            section:last-of-type {
+                padding-bottom: 50px;
             }
             .profile-header {
                 margin-top: -50px;
@@ -434,7 +467,6 @@
             }
             h2 {
                 font-size: 1.5rem;
-                margin-top: 40px;
             }
             /* Navigation responsive */
             .main-nav {
@@ -502,8 +534,7 @@
         </div>
     </div>
 
-    <div class="container">
-        
+    <div class="profile-container">
         <div class="profile-header">
             <div class="profile-pic"></div>
             <div class="profile-info">
@@ -518,8 +549,10 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <section id="about">
+    <section id="about">
+        <div class="section-content">
             <h2>About</h2>
             <p>
                 I am a Staff Research Scientist and Manager at <strong>InstaDeep (BioNTech Group)</strong>, 
@@ -531,18 +564,22 @@
                 and <strong>Neuroevolution</strong>. I previously completed my PhD at Sorbonne University, focusing on sample efficiency in Deep RL, 
                 and collaborated with Google DeepMind and Imperial College London.
             </p>
-        </section>
+        </div>
+    </section>
 
-        <section id="news">
+    <section id="news">
+        <div class="section-content">
             <h2>News</h2>
             <ul>
                 <li><strong>2025:</strong> Our paper <em>"A multimodal conversational agent for DNA, RNA and protein tasks"</em> was featured on the cover of <strong>Nature Machine Intelligence</strong>!</li>
                 <li><strong>2025:</strong> <em>"Annotating the genome at single-nucleotide resolution"</em> accepted to <strong>Nature Methods</strong>.</li>
                 <li><strong>2024:</strong> The <em>Nucleotide Transformer</em> paper is now published in <strong>Nature Methods</strong>.</li>
             </ul>
-        </section>
+        </div>
+    </section>
 
-        <section id="publications">
+    <section id="publications">
+        <div class="section-content">
             <h2>Selected Publications</h2>
             
             <div class="paper">
@@ -591,8 +628,8 @@
                 </div>
             </div>
 
-        </section>
-    </div>
+        </div>
+    </section>
 
     <script>
         // Banner time-of-day logic with manual override
