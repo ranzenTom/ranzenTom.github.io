@@ -343,6 +343,54 @@
             transform: scale(0.95);
         }
 
+        /* Banner Time Selector */
+        .banner-time-selector {
+            position: absolute;
+            bottom: 40px;
+            right: 20px;
+            display: flex;
+            gap: 5px;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 4px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .time-btn {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            transition: all 0.25s ease;
+        }
+
+        .time-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.1);
+        }
+
+        .time-btn.active {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .time-btn:active {
+            transform: scale(0.95);
+        }
+
         /* Smooth scrolling */
         html {
             scroll-behavior: smooth;
@@ -406,6 +454,17 @@
             section {
                 scroll-margin-top: 70px;
             }
+            .banner-time-selector {
+                bottom: 30px;
+                right: 12px;
+                gap: 4px;
+                padding: 3px;
+            }
+            .time-btn {
+                width: 20px;
+                height: 20px;
+                font-size: 0.55rem;
+            }
         }
     </style>
 </head>
@@ -427,6 +486,20 @@
             <source media="(min-width: 768px)" srcset="" id="banner-tablet">
             <img src="" alt="NYC skyline with neural network overlay" id="banner-mobile">
         </picture>
+        <div class="banner-time-selector">
+            <button class="time-btn" data-time="morning" title="Morning (7-10am)">
+                <i class="fa-regular fa-circle"></i>
+            </button>
+            <button class="time-btn" data-time="day" title="Day (10am-5pm)">
+                <i class="fa-solid fa-circle"></i>
+            </button>
+            <button class="time-btn" data-time="afternoon" title="Afternoon (5-8pm)">
+                <i class="fa-solid fa-circle-half-stroke"></i>
+            </button>
+            <button class="time-btn" data-time="night" title="Night (8pm-7am)">
+                <i class="fa-solid fa-star"></i>
+            </button>
+        </div>
     </div>
 
     <div class="container">
@@ -522,24 +595,49 @@
     </div>
 
     <script>
-        // Banner time-of-day logic
+        // Banner time-of-day logic with manual override
         (function() {
-            const hour = new Date().getHours();
-            let timeOfDay;
+            const timeButtons = document.querySelectorAll('.time-btn');
             
-            if (hour >= 7 && hour < 10) {
-                timeOfDay = 'morning';
-            } else if (hour >= 10 && hour < 17) {
-                timeOfDay = 'day';
-            } else if (hour >= 17 && hour < 20) {
-                timeOfDay = 'afternoon';
-            } else {
-                timeOfDay = 'night';
+            // Set banner to a specific time of day
+            function setBanner(timeOfDay) {
+                document.getElementById('banner-desktop').srcset = `banners/banner_desktop_${timeOfDay}.jpeg`;
+                document.getElementById('banner-tablet').srcset = `banners/banner_tablet_${timeOfDay}.jpeg`;
+                document.getElementById('banner-mobile').src = `banners/banner_mobile_${timeOfDay}.jpeg`;
+                
+                // Update active state on buttons
+                timeButtons.forEach(function(btn) {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('data-time') === timeOfDay) {
+                        btn.classList.add('active');
+                    }
+                });
             }
             
-            document.getElementById('banner-desktop').srcset = `banners/banner_desktop_${timeOfDay}.jpeg`;
-            document.getElementById('banner-tablet').srcset = `banners/banner_tablet_${timeOfDay}.jpeg`;
-            document.getElementById('banner-mobile').src = `banners/banner_mobile_${timeOfDay}.jpeg`;
+            // Detect current time of day
+            function detectTimeOfDay() {
+                const hour = new Date().getHours();
+                if (hour >= 7 && hour < 10) {
+                    return 'morning';
+                } else if (hour >= 10 && hour < 17) {
+                    return 'day';
+                } else if (hour >= 17 && hour < 20) {
+                    return 'afternoon';
+                } else {
+                    return 'night';
+                }
+            }
+            
+            // Initialize with auto-detected time
+            setBanner(detectTimeOfDay());
+            
+            // Add click handlers to time buttons
+            timeButtons.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    const timeOfDay = this.getAttribute('data-time');
+                    setBanner(timeOfDay);
+                });
+            });
         })();
 
         // Theme toggle logic
