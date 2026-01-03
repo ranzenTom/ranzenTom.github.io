@@ -674,6 +674,122 @@
             opacity: 0.7;
         }
 
+        /* Talks Section - Floating Cards */
+        .talks-track-wrapper {
+            overflow-x: auto;
+            margin: 0 -40px;
+            padding: 0 40px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-color) transparent;
+        }
+
+        .talks-track-wrapper::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .talks-track-wrapper::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .talks-track-wrapper::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 3px;
+        }
+
+        .talks-track {
+            display: flex;
+            gap: 20px;
+            padding: 20px 0;
+            width: fit-content;
+        }
+
+        .talk-card {
+            flex: 0 0 260px;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            transition: box-shadow 0.25s ease, transform 0.25s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            position: relative;
+            text-align: left;
+        }
+
+        .talk-card:hover {
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            transform: translateY(-4px);
+        }
+
+        /* Type indicator badge - small, in corner */
+        .talk-type {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--bg-alt);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: var(--accent-color);
+        }
+
+        .talk-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--primary-color);
+            padding-right: 36px;
+            line-height: 1.4;
+        }
+
+        .talk-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Responsive for Talks */
+        @media (max-width: 900px) {
+            .talks-track-wrapper {
+                margin: 0 -30px;
+                padding: 0 30px;
+            }
+            .talk-card {
+                flex: 0 0 240px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .talks-track-wrapper {
+                margin: 0 -20px;
+                padding: 0 20px;
+            }
+            .talk-card {
+                flex: 0 0 220px;
+                padding: 16px;
+            }
+            .talk-title {
+                font-size: 0.95rem;
+            }
+            .talk-meta {
+                font-size: 0.8rem;
+            }
+            .talk-type {
+                width: 24px;
+                height: 24px;
+                font-size: 0.6rem;
+                top: 12px;
+                right: 12px;
+            }
+        }
+
         /* Smooth scrolling */
         html {
             scroll-behavior: smooth;
@@ -854,6 +970,7 @@
             <a href="#about" class="nav-link active">About</a>
             <a href="#news" class="nav-link">News</a>
             <a href="#publications" class="nav-link">Publications</a>
+            <a href="#talks" class="nav-link">Talks</a>
         </div>
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
             <i class="fa-solid fa-moon"></i>
@@ -1061,6 +1178,63 @@
                 </div>
             </div>
 
+        </div>
+    </section>
+
+    <section id="talks">
+        <div class="section-content">
+            <h2>Talks & Presentations</h2>
+            <div class="talks-track-wrapper">
+                <div class="talks-track">
+                    <!-- Video Talks -->
+                    <a href="https://www.youtube.com/watch?v=09pXsXCAw7E" target="_blank" class="talk-card">
+                        <span class="talk-type"><i class="fa-solid fa-play"></i></span>
+                        <span class="talk-title">Nucleotide Transformer</span>
+                        <span class="talk-meta">YouTube • 2024</span>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=KKhtWU-eriY" target="_blank" class="talk-card">
+                        <span class="talk-type"><i class="fa-solid fa-play"></i></span>
+                        <span class="talk-title">Foundation Models for Genomics</span>
+                        <span class="talk-meta">YouTube • 2024</span>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=TtAmWl9lTIU" target="_blank" class="talk-card">
+                        <span class="talk-type"><i class="fa-solid fa-play"></i></span>
+                        <span class="talk-title">AI for Biology</span>
+                        <span class="talk-meta">YouTube • 2023</span>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=wxZ9ERqzc-E" target="_blank" class="talk-card">
+                        <span class="talk-type"><i class="fa-solid fa-play"></i></span>
+                        <span class="talk-title">Deep RL & Evolution</span>
+                        <span class="talk-meta">YouTube • 2023</span>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=u9TwHINqd1o" target="_blank" class="talk-card">
+                        <span class="talk-type"><i class="fa-solid fa-play"></i></span>
+                        <span class="talk-title">MAP-Elites & RL</span>
+                        <span class="talk-meta">YouTube • 2022</span>
+                    </a>
+                    <!-- Conference Presentations -->
+                    <a href="https://www.csh-asia.org/?content/2767" target="_blank" class="talk-card">
+                        <span class="talk-type"><i class="fa-solid fa-microphone"></i></span>
+                        <span class="talk-title">Cold Spring Harbor Asia</span>
+                        <span class="talk-meta">Suzhou, China • Oct 2025</span>
+                    </a>
+                    <a href="https://meetings.cshl.edu/abstracts.aspx?meet=INFO&year=25" target="_blank" class="talk-card">
+                        <span class="talk-type"><i class="fa-solid fa-microphone"></i></span>
+                        <span class="talk-title">CSHL Information Processing</span>
+                        <span class="talk-meta">Cold Spring Harbor • 2025</span>
+                    </a>
+                    <a href="https://mbzuai.ac.ae/event/mbzuai-workshop-2025/" target="_blank" class="talk-card">
+                        <span class="talk-type"><i class="fa-solid fa-microphone"></i></span>
+                        <span class="talk-title">MBZUAI Workshop</span>
+                        <span class="talk-meta">Abu Dhabi • 2025</span>
+                    </a>
+                    <a href="https://www.linkedin.com/posts/instadeep_nvidia-gtc-nvidiagtc-activity-7043891501621231616-kYjJ" target="_blank" class="talk-card">
+                        <span class="talk-type"><i class="fa-solid fa-microphone"></i></span>
+                        <span class="talk-title">NVIDIA GTC</span>
+                        <span class="talk-meta">San Jose • 2023</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
