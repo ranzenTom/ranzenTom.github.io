@@ -16,6 +16,7 @@
             --text-color: #3a3a3a;
             --text-muted: #6b6b6b;
             --bg-color: #fafafa;
+            --bg-alt: #f2f3f4;
             --card-bg: #ffffff;
             --border-color: rgba(0,0,0,0.1);
             --container-width: 1000px;
@@ -27,6 +28,7 @@
             --text-color: #e0e0e0;
             --text-muted: #a0a0a0;
             --bg-color: #1a1a1a;
+            --bg-alt: #242424;
             --card-bg: #2a2a2a;
             --border-color: rgba(255,255,255,0.1);
         }
@@ -73,12 +75,19 @@
             pointer-events: none;
         }
 
-        /* Main Container */
-        .container {
+        /* Profile Container - keeps profile header centered with banner overlap */
+        .profile-container {
             max-width: var(--container-width);
             margin: 0 auto;
-            padding: 0 40px 80px;
+            padding: 0 40px;
             position: relative;
+        }
+
+        /* Section Content - centers content within full-width sections */
+        .section-content {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 40px;
         }
 
         /* Profile Section */
@@ -88,7 +97,7 @@
             align-items: center;
             text-align: center;
             margin-top: -70px;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
             gap: 16px;
         }
 
@@ -151,10 +160,20 @@
             transform: translateY(-1px);
         }
 
-        /* Section Styling */
+        /* Section Styling - Full width with alternating backgrounds */
         section {
-            margin-bottom: 50px;
+            width: 100%;
+            padding: 60px 0;
             text-align: center;
+            background-color: var(--bg-color);
+        }
+
+        section:nth-of-type(even) {
+            background-color: var(--bg-alt);
+        }
+
+        section:last-of-type {
+            padding-bottom: 80px;
         }
 
         section p {
@@ -173,7 +192,7 @@
 
         h2 {
             font-size: 1.75rem;
-            margin-top: 60px;
+            margin-top: 0;
             margin-bottom: 24px;
             color: var(--primary-color);
             letter-spacing: -0.01em;
@@ -218,6 +237,133 @@
         .paper-links a:hover {
             background-color: var(--accent-color);
             color: white;
+        }
+
+        /* Horizontal Timeline Styling */
+        .timeline-h {
+            overflow-x: auto;
+            margin: 0 -40px;
+            padding: 0 40px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-color) transparent;
+        }
+
+        .timeline-h::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .timeline-h::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .timeline-h::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 3px;
+        }
+
+        .timeline-track {
+            display: flex;
+            gap: 24px;
+            padding: 40px 0 20px;
+            position: relative;
+            width: fit-content;
+        }
+
+        .timeline-track::before {
+            content: '';
+            position: absolute;
+            top: 16px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--border-color);
+            border-radius: 1px;
+        }
+
+        .timeline-card {
+            position: relative;
+            flex: 0 0 300px;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            transition: box-shadow 0.25s ease, transform 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .timeline-card::before {
+            content: '';
+            position: absolute;
+            top: -24px;
+            left: 28px;
+            width: 10px;
+            height: 10px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            border: 2px solid var(--card-bg);
+            box-shadow: 0 0 0 2px var(--accent-color);
+        }
+
+        .timeline-card::after {
+            content: '';
+            position: absolute;
+            top: -14px;
+            left: 32px;
+            width: 2px;
+            height: 14px;
+            background: var(--accent-color);
+        }
+
+        .timeline-card:hover {
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            transform: translateY(-4px);
+        }
+
+        .timeline-badge {
+            display: inline-block;
+            align-self: flex-start;
+            background: var(--accent-color);
+            color: white;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        .timeline-card p {
+            margin: 0;
+            flex: 1;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .timeline-card .timeline-link {
+            align-self: flex-end;
+        }
+
+        .timeline-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            border-radius: 50%;
+            transition: all 0.25s ease;
+            flex-shrink: 0;
+        }
+
+        .timeline-link:hover {
+            background-color: var(--accent-color);
+            color: white;
+            transform: scale(1.1);
         }
 
         /* Navigation Bar */
@@ -343,6 +489,191 @@
             transform: scale(0.95);
         }
 
+        /* Banner Time Selector */
+        .banner-time-selector {
+            position: absolute;
+            bottom: 40px;
+            right: 20px;
+            display: flex;
+            gap: 5px;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 4px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .time-btn {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            transition: all 0.25s ease;
+        }
+
+        .time-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.1);
+        }
+
+        .time-btn.active {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .time-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* About Section - Education & Experience */
+        .about-columns {
+            display: flex;
+            gap: 60px;
+            margin-top: 40px;
+            justify-content: center;
+        }
+
+        .about-column {
+            flex: 1;
+            max-width: 380px;
+        }
+
+        .about-column-title {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            text-align: left;
+        }
+
+        .about-entries {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            position: relative;
+        }
+
+        /* Vertical connecting line */
+        .about-entries::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 60px;
+            bottom: 30px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--border-color), transparent);
+            border-radius: 1px;
+        }
+
+        .about-entry {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 12px 0;
+            position: relative;
+        }
+
+        .entry-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--bg-alt) 0%, var(--card-bg) 100%);
+            border: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        .entry-logo::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 100%);
+            opacity: 0.1;
+            border-radius: 50%;
+        }
+
+        .entry-logo i {
+            font-size: 1.4rem;
+            color: var(--accent-color);
+            opacity: 0.6;
+        }
+
+        .entry-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .about-entry:hover .entry-logo {
+            transform: scale(1.08);
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 16px rgba(74, 124, 126, 0.2);
+        }
+
+        .entry-details {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            padding-top: 8px;
+            text-align: left;
+        }
+
+        .entry-institution {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        .entry-role {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        .entry-date {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .entry-location {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .entry-location i {
+            font-size: 0.7rem;
+            opacity: 0.7;
+        }
+
         /* Smooth scrolling */
         html {
             scroll-behavior: smooth;
@@ -355,18 +686,49 @@
 
         /* Responsive Design */
         @media (max-width: 900px) {
-            .container {
-                padding: 0 30px 60px;
+            .profile-container,
+            .section-content {
+                padding: 0 30px;
+            }
+            section {
+                padding: 50px 0;
+            }
+            section:last-of-type {
+                padding-bottom: 60px;
             }
             .profile-pic {
                 width: 150px;
                 height: 150px;
             }
+            .timeline-h {
+                margin: 0 -30px;
+                padding: 0 30px;
+            }
+            .timeline-track {
+                gap: 20px;
+            }
+            .timeline-card {
+                flex: 0 0 280px;
+            }
+            /* About columns responsive */
+            .about-columns {
+                gap: 40px;
+            }
+            .about-column {
+                max-width: 320px;
+            }
         }
 
         @media (max-width: 600px) {
-            .container {
-                padding: 0 20px 50px;
+            .profile-container,
+            .section-content {
+                padding: 0 20px;
+            }
+            section {
+                padding: 40px 0;
+            }
+            section:last-of-type {
+                padding-bottom: 50px;
             }
             .profile-header {
                 margin-top: -50px;
@@ -386,7 +748,40 @@
             }
             h2 {
                 font-size: 1.5rem;
-                margin-top: 40px;
+            }
+            /* Timeline responsive */
+            .timeline-h {
+                margin: 0 -20px;
+                padding: 0 20px;
+            }
+            .timeline-track {
+                gap: 16px;
+                padding-top: 36px;
+            }
+            .timeline-track::before {
+                top: 12px;
+            }
+            .timeline-card {
+                flex: 0 0 260px;
+                padding: 16px;
+            }
+            .timeline-card::before {
+                top: -20px;
+                left: 24px;
+                width: 8px;
+                height: 8px;
+            }
+            .timeline-card::after {
+                top: -12px;
+                left: 27px;
+                height: 12px;
+            }
+            .timeline-badge {
+                font-size: 0.75rem;
+                padding: 3px 10px;
+            }
+            .timeline-card p {
+                font-size: 0.9rem;
             }
             /* Navigation responsive */
             .main-nav {
@@ -405,6 +800,50 @@
             }
             section {
                 scroll-margin-top: 70px;
+            }
+            .banner-time-selector {
+                bottom: 30px;
+                right: 12px;
+                gap: 4px;
+                padding: 3px;
+            }
+            .time-btn {
+                width: 20px;
+                height: 20px;
+                font-size: 0.55rem;
+            }
+            /* About columns mobile - stack vertically */
+            .about-columns {
+                flex-direction: column;
+                gap: 32px;
+                align-items: center;
+            }
+            .about-column {
+                max-width: 100%;
+                width: 100%;
+            }
+            .about-column-title {
+                text-align: center;
+            }
+            .entry-logo {
+                width: 50px;
+                height: 50px;
+            }
+            .entry-logo i {
+                font-size: 1.2rem;
+            }
+            .about-entries::before {
+                left: 25px;
+                top: 50px;
+            }
+            .entry-details {
+                padding-top: 4px;
+            }
+            .entry-institution {
+                font-size: 0.95rem;
+            }
+            .entry-role {
+                font-size: 0.85rem;
             }
         }
     </style>
@@ -427,10 +866,23 @@
             <source media="(min-width: 768px)" srcset="" id="banner-tablet">
             <img src="" alt="NYC skyline with neural network overlay" id="banner-mobile">
         </picture>
+        <div class="banner-time-selector">
+            <button class="time-btn" data-time="morning" title="Morning (7-10am)">
+                <i class="fa-regular fa-circle"></i>
+            </button>
+            <button class="time-btn" data-time="day" title="Day (10am-5pm)">
+                <i class="fa-solid fa-circle"></i>
+            </button>
+            <button class="time-btn" data-time="afternoon" title="Afternoon (5-8pm)">
+                <i class="fa-solid fa-circle-half-stroke"></i>
+            </button>
+            <button class="time-btn" data-time="night" title="Night (8pm-7am)">
+                <i class="fa-solid fa-star"></i>
+            </button>
+        </div>
     </div>
 
-    <div class="container">
-        
+    <div class="profile-container">
         <div class="profile-header">
             <div class="profile-pic"></div>
             <div class="profile-info">
@@ -445,8 +897,10 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <section id="about">
+    <section id="about">
+        <div class="section-content">
             <h2>About</h2>
             <p>
                 I am a Staff Research Scientist and Manager at <strong>InstaDeep (BioNTech Group)</strong>, 
@@ -458,18 +912,107 @@
                 and <strong>Neuroevolution</strong>. I previously completed my PhD at Sorbonne University, focusing on sample efficiency in Deep RL, 
                 and collaborated with Google DeepMind and Imperial College London.
             </p>
-        </section>
 
-        <section id="news">
+            <div class="about-columns">
+                <!-- Education Column -->
+                <div class="about-column">
+                    <h3 class="about-column-title">Education</h3>
+                    <div class="about-entries">
+                        <div class="about-entry">
+                            <div class="entry-logo">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
+                            <div class="entry-details">
+                                <p class="entry-institution">Sorbonne University</p>
+                                <p class="entry-role">PhD in Artificial Intelligence</p>
+                                <p class="entry-date">2018 – 2021</p>
+                                <p class="entry-location"><i class="fa-solid fa-location-dot"></i> Paris, France</p>
+                            </div>
+                        </div>
+                        <div class="about-entry">
+                            <div class="entry-logo">
+                                <i class="fa-solid fa-university"></i>
+                            </div>
+                            <div class="entry-details">
+                                <p class="entry-institution">Imperial College London</p>
+                                <p class="entry-role">MSc Engineering</p>
+                                <p class="entry-date">2017 – 2018</p>
+                                <p class="entry-location"><i class="fa-solid fa-location-dot"></i> London, UK</p>
+                            </div>
+                        </div>
+                        <div class="about-entry">
+                            <div class="entry-logo">
+                                <i class="fa-solid fa-rocket"></i>
+                            </div>
+                            <div class="entry-details">
+                                <p class="entry-institution">Supaero</p>
+                                <p class="entry-role">MSc Computer Science</p>
+                                <p class="entry-date">2014 – 2018</p>
+                                <p class="entry-location"><i class="fa-solid fa-location-dot"></i> Toulouse, France</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience Column -->
+                <div class="about-column">
+                    <h3 class="about-column-title">Experience</h3>
+                    <div class="about-entries">
+                        <div class="about-entry">
+                            <div class="entry-logo">
+                                <i class="fa-solid fa-dna"></i>
+                            </div>
+                            <div class="entry-details">
+                                <p class="entry-institution">InstaDeep (BioNTech)</p>
+                                <p class="entry-role">Staff Research Scientist</p>
+                                <p class="entry-date">2018 – Present</p>
+                                <p class="entry-location"><i class="fa-solid fa-location-dot"></i> New York, USA</p>
+                            </div>
+                        </div>
+                        <div class="about-entry">
+                            <div class="entry-logo">
+                                <i class="fa-solid fa-robot"></i>
+                            </div>
+                            <div class="entry-details">
+                                <p class="entry-institution">ISIR</p>
+                                <p class="entry-role">AI Researcher</p>
+                                <p class="entry-date">2018</p>
+                                <p class="entry-location"><i class="fa-solid fa-location-dot"></i> Paris, France</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="news">
+        <div class="section-content">
             <h2>News</h2>
-            <ul>
-                <li><strong>2025:</strong> Our paper <em>"A multimodal conversational agent for DNA, RNA and protein tasks"</em> was featured on the cover of <strong>Nature Machine Intelligence</strong>!</li>
-                <li><strong>2025:</strong> <em>"Annotating the genome at single-nucleotide resolution"</em> accepted to <strong>Nature Methods</strong>.</li>
-                <li><strong>2024:</strong> The <em>Nucleotide Transformer</em> paper is now published in <strong>Nature Methods</strong>.</li>
-            </ul>
-        </section>
+            <div class="timeline-h">
+                <div class="timeline-track">
+                    <div class="timeline-card">
+                        <span class="timeline-badge">Oct 2025</span>
+                        <p><em>"Annotating the genome at single-nucleotide resolution"</em> accepted to <strong>Nature Methods</strong>.</p>
+                        <a href="https://www.linkedin.com/posts/thomas-pierrot-120a43128_when-you-think-about-computer-vision-segmentation-activity-7389651413213028353-7b42" class="timeline-link" title="View on LinkedIn" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="timeline-card">
+                        <span class="timeline-badge">Jul 2025</span>
+                        <p>Our paper <em>"A multimodal conversational agent for DNA, RNA and protein tasks"</em> was featured on the cover of <strong>Nature Machine Intelligence</strong>!</p>
+                        <a href="https://www.linkedin.com/posts/thomas-pierrot-120a43128_our-chatnt-work-just-made-the-cover-of-the-activity-7343282977012903937-W8Ny" class="timeline-link" title="View on LinkedIn" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="timeline-card">
+                        <span class="timeline-badge">Nov 2024</span>
+                        <p>The <em>Nucleotide Transformer</em> paper is now published in <strong>Nature Methods</strong>.</p>
+                        <a href="https://www.linkedin.com/posts/thomas-pierrot-120a43128_nucleotide-transformer-building-and-evaluating-activity-7270431178887778304-jnit" class="timeline-link" title="View on LinkedIn" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <section id="publications">
+    <section id="publications">
+        <div class="section-content">
             <h2>Selected Publications</h2>
             
             <div class="paper">
@@ -518,28 +1061,53 @@
                 </div>
             </div>
 
-        </section>
-    </div>
+        </div>
+    </section>
 
     <script>
-        // Banner time-of-day logic
+        // Banner time-of-day logic with manual override
         (function() {
-            const hour = new Date().getHours();
-            let timeOfDay;
+            const timeButtons = document.querySelectorAll('.time-btn');
             
-            if (hour >= 7 && hour < 10) {
-                timeOfDay = 'morning';
-            } else if (hour >= 10 && hour < 17) {
-                timeOfDay = 'day';
-            } else if (hour >= 17 && hour < 20) {
-                timeOfDay = 'afternoon';
-            } else {
-                timeOfDay = 'night';
+            // Set banner to a specific time of day
+            function setBanner(timeOfDay) {
+                document.getElementById('banner-desktop').srcset = `banners/banner_desktop_${timeOfDay}.jpeg`;
+                document.getElementById('banner-tablet').srcset = `banners/banner_tablet_${timeOfDay}.jpeg`;
+                document.getElementById('banner-mobile').src = `banners/banner_mobile_${timeOfDay}.jpeg`;
+                
+                // Update active state on buttons
+                timeButtons.forEach(function(btn) {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('data-time') === timeOfDay) {
+                        btn.classList.add('active');
+                    }
+                });
             }
             
-            document.getElementById('banner-desktop').srcset = `banners/banner_desktop_${timeOfDay}.jpeg`;
-            document.getElementById('banner-tablet').srcset = `banners/banner_tablet_${timeOfDay}.jpeg`;
-            document.getElementById('banner-mobile').src = `banners/banner_mobile_${timeOfDay}.jpeg`;
+            // Detect current time of day
+            function detectTimeOfDay() {
+                const hour = new Date().getHours();
+                if (hour >= 7 && hour < 10) {
+                    return 'morning';
+                } else if (hour >= 10 && hour < 17) {
+                    return 'day';
+                } else if (hour >= 17 && hour < 20) {
+                    return 'afternoon';
+                } else {
+                    return 'night';
+                }
+            }
+            
+            // Initialize with auto-detected time
+            setBanner(detectTimeOfDay());
+            
+            // Add click handlers to time buttons
+            timeButtons.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    const timeOfDay = this.getAttribute('data-time');
+                    setBanner(timeOfDay);
+                });
+            });
         })();
 
         // Theme toggle logic
