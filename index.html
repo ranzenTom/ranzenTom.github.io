@@ -537,6 +537,143 @@
             transform: scale(0.95);
         }
 
+        /* About Section - Education & Experience */
+        .about-columns {
+            display: flex;
+            gap: 60px;
+            margin-top: 40px;
+            justify-content: center;
+        }
+
+        .about-column {
+            flex: 1;
+            max-width: 380px;
+        }
+
+        .about-column-title {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            text-align: left;
+        }
+
+        .about-entries {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            position: relative;
+        }
+
+        /* Vertical connecting line */
+        .about-entries::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 60px;
+            bottom: 30px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--border-color), transparent);
+            border-radius: 1px;
+        }
+
+        .about-entry {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 12px 0;
+            position: relative;
+        }
+
+        .entry-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--bg-alt) 0%, var(--card-bg) 100%);
+            border: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        .entry-logo::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 100%);
+            opacity: 0.1;
+            border-radius: 50%;
+        }
+
+        .entry-logo i {
+            font-size: 1.4rem;
+            color: var(--accent-color);
+            opacity: 0.6;
+        }
+
+        .entry-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .about-entry:hover .entry-logo {
+            transform: scale(1.08);
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 16px rgba(74, 124, 126, 0.2);
+        }
+
+        .entry-details {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            padding-top: 8px;
+            text-align: left;
+        }
+
+        .entry-institution {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        .entry-role {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        .entry-date {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .entry-location {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .entry-location i {
+            font-size: 0.7rem;
+            opacity: 0.7;
+        }
+
         /* Smooth scrolling */
         html {
             scroll-behavior: smooth;
@@ -572,6 +709,13 @@
             }
             .timeline-card {
                 flex: 0 0 280px;
+            }
+            /* About columns responsive */
+            .about-columns {
+                gap: 40px;
+            }
+            .about-column {
+                max-width: 320px;
             }
         }
 
@@ -668,6 +812,39 @@
                 height: 20px;
                 font-size: 0.55rem;
             }
+            /* About columns mobile - stack vertically */
+            .about-columns {
+                flex-direction: column;
+                gap: 32px;
+                align-items: center;
+            }
+            .about-column {
+                max-width: 100%;
+                width: 100%;
+            }
+            .about-column-title {
+                text-align: center;
+            }
+            .entry-logo {
+                width: 50px;
+                height: 50px;
+            }
+            .entry-logo i {
+                font-size: 1.2rem;
+            }
+            .about-entries::before {
+                left: 25px;
+                top: 50px;
+            }
+            .entry-details {
+                padding-top: 4px;
+            }
+            .entry-institution {
+                font-size: 0.95rem;
+            }
+            .entry-role {
+                font-size: 0.85rem;
+            }
         }
     </style>
 </head>
@@ -735,6 +912,77 @@
                 and <strong>Neuroevolution</strong>. I previously completed my PhD at Sorbonne University, focusing on sample efficiency in Deep RL, 
                 and collaborated with Google DeepMind and Imperial College London.
             </p>
+
+            <div class="about-columns">
+                <!-- Education Column -->
+                <div class="about-column">
+                    <h3 class="about-column-title">Education</h3>
+                    <div class="about-entries">
+                        <div class="about-entry">
+                            <div class="entry-logo">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
+                            <div class="entry-details">
+                                <p class="entry-institution">Sorbonne University</p>
+                                <p class="entry-role">PhD in Artificial Intelligence</p>
+                                <p class="entry-date">2018 – 2021</p>
+                                <p class="entry-location"><i class="fa-solid fa-location-dot"></i> Paris, France</p>
+                            </div>
+                        </div>
+                        <div class="about-entry">
+                            <div class="entry-logo">
+                                <i class="fa-solid fa-university"></i>
+                            </div>
+                            <div class="entry-details">
+                                <p class="entry-institution">Imperial College London</p>
+                                <p class="entry-role">MSc Engineering</p>
+                                <p class="entry-date">2017 – 2018</p>
+                                <p class="entry-location"><i class="fa-solid fa-location-dot"></i> London, UK</p>
+                            </div>
+                        </div>
+                        <div class="about-entry">
+                            <div class="entry-logo">
+                                <i class="fa-solid fa-rocket"></i>
+                            </div>
+                            <div class="entry-details">
+                                <p class="entry-institution">Supaero</p>
+                                <p class="entry-role">MSc Computer Science</p>
+                                <p class="entry-date">2014 – 2018</p>
+                                <p class="entry-location"><i class="fa-solid fa-location-dot"></i> Toulouse, France</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience Column -->
+                <div class="about-column">
+                    <h3 class="about-column-title">Experience</h3>
+                    <div class="about-entries">
+                        <div class="about-entry">
+                            <div class="entry-logo">
+                                <i class="fa-solid fa-dna"></i>
+                            </div>
+                            <div class="entry-details">
+                                <p class="entry-institution">InstaDeep (BioNTech)</p>
+                                <p class="entry-role">Staff Research Scientist</p>
+                                <p class="entry-date">2018 – Present</p>
+                                <p class="entry-location"><i class="fa-solid fa-location-dot"></i> New York, USA</p>
+                            </div>
+                        </div>
+                        <div class="about-entry">
+                            <div class="entry-logo">
+                                <i class="fa-solid fa-robot"></i>
+                            </div>
+                            <div class="entry-details">
+                                <p class="entry-institution">ISIR</p>
+                                <p class="entry-role">AI Researcher</p>
+                                <p class="entry-date">2018</p>
+                                <p class="entry-location"><i class="fa-solid fa-location-dot"></i> Paris, France</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
