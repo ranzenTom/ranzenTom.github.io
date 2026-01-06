@@ -207,32 +207,83 @@
             box-shadow: 0 1px 3px rgba(0,0,0,0.04);
             transition: box-shadow 0.2s ease;
             text-align: left;
+            position: relative;
         }
         .paper:hover {
             box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .paper-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 8px;
         }
         .paper-title {
             font-family: 'Playfair Display', Georgia, serif;
             font-weight: 600;
             font-size: 1.15rem;
-            margin-bottom: 8px;
             color: var(--primary-color);
+            flex: 1;
+            line-height: 1.4;
         }
         .paper-meta {
             color: var(--text-muted);
             font-size: 0.95rem;
-            margin-bottom: 10px;
+            margin-bottom: 6px;
             line-height: 1.6;
         }
-        .paper-links a {
+        .paper-venue-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        .venue-badge {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 11px;
+            border-radius: 12px;
+            letter-spacing: 0.02em;
+        }
+        .year-text {
+            color: var(--text-muted);
             font-size: 0.85rem;
+        }
+        .year-text::before {
+            content: '· ';
+            margin-left: 4px;
+            margin-right: 4px;
+            color: var(--text-muted);
+        }
+        .highlight-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
             color: var(--accent-color);
-            margin-right: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .paper-links {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            flex-shrink: 0;
+        }
+        .paper-links a {
+            font-size: 0.75rem;
+            color: var(--accent-color);
             text-decoration: none;
             border: 1px solid var(--accent-color);
             padding: 4px 12px;
             border-radius: 20px;
             transition: all 0.25s ease;
+            white-space: nowrap;
         }
         .paper-links a:hover {
             background-color: var(--accent-color);
@@ -1187,7 +1238,7 @@
 
     <section id="talks">
         <div class="section-content">
-            <h2>Talks & Presentations</h2>
+            <h2>Talks</h2>
             <div class="talks-track-wrapper">
                 <div class="talks-track" id="talks-container">
                     <!-- Talks will be dynamically loaded here -->
@@ -1416,15 +1467,13 @@
                 const paper = document.createElement('div');
                 paper.className = 'paper';
 
+                // Create header with title and links
+                const header = document.createElement('div');
+                header.className = 'paper-header';
+
                 const title = document.createElement('div');
                 title.className = 'paper-title';
                 title.textContent = publication.title;
-
-                const meta = document.createElement('div');
-                meta.className = 'paper-meta';
-                // Replace "Thomas Pierrot" with <strong>Thomas Pierrot</strong>
-                const authorsHTML = publication.authors.replace(/Thomas Pierrot/g, '<strong>Thomas Pierrot</strong>');
-                meta.innerHTML = authorsHTML + '<br><em>' + publication.venue + '</em>';
 
                 const links = document.createElement('div');
                 links.className = 'paper-links';
@@ -1433,12 +1482,46 @@
                     const anchor = document.createElement('a');
                     anchor.href = link.url;
                     anchor.textContent = link.text;
+                    anchor.target = '_blank';
                     links.appendChild(anchor);
                 });
 
-                paper.appendChild(title);
+                header.appendChild(title);
+                header.appendChild(links);
+
+                // Create authors meta
+                const meta = document.createElement('div');
+                meta.className = 'paper-meta';
+                const authorsHTML = publication.authors.replace(/Thomas Pierrot/g, '<strong>Thomas Pierrot</strong>');
+                meta.innerHTML = authorsHTML;
+
+                // Create venue info (Option B style)
+                const venueInfo = document.createElement('div');
+                venueInfo.className = 'paper-venue-info';
+
+                const venueBadge = document.createElement('span');
+                venueBadge.className = 'venue-badge';
+                venueBadge.textContent = publication.venue;
+                venueInfo.appendChild(venueBadge);
+
+                const yearText = document.createElement('span');
+                yearText.className = 'year-text';
+                yearText.textContent = publication.year;
+                venueInfo.appendChild(yearText);
+
+                if (publication.highlights && publication.highlights.length > 0) {
+                    publication.highlights.forEach(function(highlight) {
+                        const highlightItem = document.createElement('span');
+                        highlightItem.className = 'highlight-item';
+                        const icon = highlight.includes('Cover') ? '🏆' : '⭐';
+                        highlightItem.innerHTML = icon + ' ' + highlight;
+                        venueInfo.appendChild(highlightItem);
+                    });
+                }
+
+                paper.appendChild(header);
                 paper.appendChild(meta);
-                paper.appendChild(links);
+                paper.appendChild(venueInfo);
 
                 return paper;
             }

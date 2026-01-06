@@ -1,6 +1,13 @@
 {
   "news": [
     {
+      "date": "Dec 2025",
+      "description": "We're excited to introduce Nucleotide Transformer v3 (NTv3) - InstaDeep’s new foundation model for long-range multi-species genomics 🎉",
+      "link": "",
+      "linkTitle": "View on LinkedIn",
+      "linkIcon": "fa-brands fa-linkedin-in"
+    },
+    {
       "date": "Oct 2025",
       "description": "\"Annotating the genome at single-nucleotide resolution\" accepted to Nature Methods.",
       "link": "https://www.linkedin.com/posts/thomas-pierrot-120a43128_when-you-think-about-computer-vision-segmentation-activity-7389651413213028353-7b42",
@@ -8,7 +15,21 @@
       "linkIcon": "fa-brands fa-linkedin-in"
     },
     {
-      "date": "Jul 2025",
+      "date": "Sept 2025",
+      "description": "We relocated the InstaDeep genomics AI team from Boston to New York City 🗽",
+      "link": "https://www.linkedin.com/posts/thomas-pierrot-120a43128_life-update-after-three-great-years-activity-7370222684611428352-2mjg",
+      "linkTitle": "View on LinkedIn",
+      "linkIcon": "fa-brands fa-linkedin-in"
+    },
+    {
+      "date": "July 2025",
+      "description": "We just open-sourced the first large-scale dataset designed to train conversational agents on biological sequences 🧬 ",
+      "link": "https://www.linkedin.com/posts/thomas-pierrot-120a43128_we-just-open-sourced-the-first-large-scale-activity-7346225275170414592-wajJ",
+      "linkTitle": "View on LinkedIn",
+      "linkIcon": "fa-brands fa-linkedin-in"
+    },
+    {
+      "date": "June 2025",
       "description": "Our paper \"A multimodal conversational agent for DNA, RNA and protein tasks\" was featured on the cover of Nature Machine Intelligence!",
       "link": "https://www.linkedin.com/posts/thomas-pierrot-120a43128_our-chatnt-work-just-made-the-cover-of-the-activity-7343282977012903937-W8Ny",
       "linkTitle": "View on LinkedIn",
