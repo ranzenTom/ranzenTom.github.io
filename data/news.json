@@ -1,0 +1,25 @@
+{
+  "news": [
+    {
+      "date": "Oct 2025",
+      "description": "\"Annotating the genome at single-nucleotide resolution\" accepted to Nature Methods.",
+      "link": "https://www.linkedin.com/posts/thomas-pierrot-120a43128_when-you-think-about-computer-vision-segmentation-activity-7389651413213028353-7b42",
+      "linkTitle": "View on LinkedIn",
+      "linkIcon": "fa-brands fa-linkedin-in"
+    },
+    {
+      "date": "Jul 2025",
+      "description": "Our paper \"A multimodal conversational agent for DNA, RNA and protein tasks\" was featured on the cover of Nature Machine Intelligence!",
+      "link": "https://www.linkedin.com/posts/thomas-pierrot-120a43128_our-chatnt-work-just-made-the-cover-of-the-activity-7343282977012903937-W8Ny",
+      "linkTitle": "View on LinkedIn",
+      "linkIcon": "fa-brands fa-linkedin-in"
+    },
+    {
+      "date": "Nov 2024",
+      "description": "The Nucleotide Transformer paper is now published in Nature Methods.",
+      "link": "https://www.linkedin.com/posts/thomas-pierrot-120a43128_nucleotide-transformer-building-and-evaluating-activity-7270431178887778304-jnit",
+      "linkTitle": "View on LinkedIn",
+      "linkIcon": "fa-brands fa-linkedin-in"
+    }
+  ]
+}

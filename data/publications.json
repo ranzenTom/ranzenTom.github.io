@@ -1,0 +1,56 @@
+{
+  "publications": [
+    {
+      "title": "A multimodal conversational agent for DNA, RNA and protein tasks",
+      "authors": "Bernardo P. de Almeida, Guillaume Richard, Hugo Dalla-Torre, ..., Thomas Pierrot.",
+      "venue": "Nature Machine Intelligence (Cover Article), 2025.",
+      "links": [
+        {
+          "text": "Article",
+          "url": "https://www.nature.com/articles/s42256-025-01047-1"
+        }
+      ]
+    },
+    {
+      "title": "The Nucleotide Transformer: Building the Genome's Language Model",
+      "authors": "Hugo Dalla-Torre, ..., Marie Lopez, Thomas Pierrot.",
+      "venue": "Nature Methods, 2024.",
+      "links": [
+        {
+          "text": "Article",
+          "url": "https://www.nature.com/articles/s41592-024-02523-z"
+        },
+        {
+          "text": "Code",
+          "url": "#"
+        }
+      ]
+    },
+    {
+      "title": "Evolving Populations of Diverse RL Agents with MAP-Elites",
+      "authors": "Thomas Pierrot, Arthur Flajolet.",
+      "venue": "International Conference on Learning Representations (ICLR), 2023.",
+      "links": [
+        {
+          "text": "PDF",
+          "url": "https://openreview.net/pdf/7647093a5e985828f881513eb78bf7d36bde7a04.pdf"
+        },
+        {
+          "text": "OpenReview",
+          "url": "https://openreview.net/forum?id=6BHlZgyPOZY"
+        }
+      ]
+    },
+    {
+      "title": "Learning Compositional Neural Programs with Recursive Tree Search and Planning",
+      "authors": "Thomas Pierrot, Guillaume Ligner, Scott Reed, ..., Nando de Freitas.",
+      "venue": "NeurIPS (Spotlight), 2019.",
+      "links": [
+        {
+          "text": "PDF",
+          "url": "https://shorturl.at/au4qg"
+        }
+      ]
+    }
+  ]
+}

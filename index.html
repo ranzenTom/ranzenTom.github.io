@@ -1169,22 +1169,8 @@
         <div class="section-content">
             <h2>News</h2>
             <div class="timeline-h">
-                <div class="timeline-track">
-                    <div class="timeline-card">
-                        <span class="timeline-badge">Oct 2025</span>
-                        <p><em>"Annotating the genome at single-nucleotide resolution"</em> accepted to <strong>Nature Methods</strong>.</p>
-                        <a href="https://www.linkedin.com/posts/thomas-pierrot-120a43128_when-you-think-about-computer-vision-segmentation-activity-7389651413213028353-7b42" class="timeline-link" title="View on LinkedIn" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
-                    </div>
-                    <div class="timeline-card">
-                        <span class="timeline-badge">Jul 2025</span>
-                        <p>Our paper <em>"A multimodal conversational agent for DNA, RNA and protein tasks"</em> was featured on the cover of <strong>Nature Machine Intelligence</strong>!</p>
-                        <a href="https://www.linkedin.com/posts/thomas-pierrot-120a43128_our-chatnt-work-just-made-the-cover-of-the-activity-7343282977012903937-W8Ny" class="timeline-link" title="View on LinkedIn" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
-                    </div>
-                    <div class="timeline-card">
-                        <span class="timeline-badge">Nov 2024</span>
-                        <p>The <em>Nucleotide Transformer</em> paper is now published in <strong>Nature Methods</strong>.</p>
-                        <a href="https://www.linkedin.com/posts/thomas-pierrot-120a43128_nucleotide-transformer-building-and-evaluating-activity-7270431178887778304-jnit" class="timeline-link" title="View on LinkedIn" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
-                    </div>
+                <div class="timeline-track" id="news-container">
+                    <!-- News items will be dynamically loaded here -->
                 </div>
             </div>
         </div>
@@ -1193,53 +1179,9 @@
     <section id="publications">
         <div class="section-content">
             <h2>Selected Publications</h2>
-            
-            <div class="paper">
-                <div class="paper-title">A multimodal conversational agent for DNA, RNA and protein tasks</div>
-                <div class="paper-meta">
-                    Bernardo P. de Almeida, Guillaume Richard, Hugo Dalla-Torre, ..., <strong>Thomas Pierrot</strong>.<br>
-                    <em>Nature Machine Intelligence (Cover Article), 2025.</em>
-                </div>
-                <div class="paper-links">
-                    <a href="https://www.nature.com/articles/s42256-025-01047-1">Article</a>
-                </div>
+            <div id="publications-container">
+                <!-- Publications will be dynamically loaded here -->
             </div>
-
-            <div class="paper">
-                <div class="paper-title">The Nucleotide Transformer: Building the Genome's Language Model</div>
-                <div class="paper-meta">
-                    Hugo Dalla-Torre, ..., Marie Lopez, <strong>Thomas Pierrot</strong>.<br>
-                    <em>Nature Methods, 2024.</em>
-                </div>
-                <div class="paper-links">
-                    <a href="https://www.nature.com/articles/s41592-024-02523-z">Article</a>
-                    <a href="#">Code</a>
-                </div>
-            </div>
-
-            <div class="paper">
-                <div class="paper-title">Evolving Populations of Diverse RL Agents with MAP-Elites</div>
-                <div class="paper-meta">
-                    <strong>Thomas Pierrot</strong>, Arthur Flajolet.<br>
-                    <em>International Conference on Learning Representations (ICLR), 2023.</em>
-                </div>
-                <div class="paper-links">
-                    <a href="https://openreview.net/pdf/7647093a5e985828f881513eb78bf7d36bde7a04.pdf">PDF</a>
-                    <a href="https://openreview.net/forum?id=6BHlZgyPOZY">OpenReview</a>
-                </div>
-            </div>
-            
-             <div class="paper">
-                <div class="paper-title">Learning Compositional Neural Programs with Recursive Tree Search and Planning</div>
-                <div class="paper-meta">
-                    <strong>Thomas Pierrot</strong>, Guillaume Ligner, Scott Reed, ..., Nando de Freitas.<br>
-                    <em>NeurIPS (Spotlight), 2019.</em>
-                </div>
-                <div class="paper-links">
-                    <a href="https://shorturl.at/au4qg">PDF</a>
-                </div>
-            </div>
-
         </div>
     </section>
 
@@ -1400,6 +1342,106 @@
                     }
                 });
             });
+        })();
+
+        // Load and render news from JSON
+        (function() {
+            fetch('data/news.json')
+                .then(function(response) {
+                    if (!response.ok) {
+                        throw new Error('Failed to load news data');
+                    }
+                    return response.json();
+                })
+                .then(function(data) {
+                    const container = document.getElementById('news-container');
+
+                    data.news.forEach(function(newsItem) {
+                        const card = createNewsCard(newsItem);
+                        container.appendChild(card);
+                    });
+                })
+                .catch(function(error) {
+                    console.error('Error loading news:', error);
+                });
+
+            function createNewsCard(newsItem) {
+                const card = document.createElement('div');
+                card.className = 'timeline-card';
+
+                const badge = document.createElement('span');
+                badge.className = 'timeline-badge';
+                badge.textContent = newsItem.date;
+
+                const description = document.createElement('p');
+                description.innerHTML = newsItem.description;
+
+                const link = document.createElement('a');
+                link.className = 'timeline-link';
+                link.href = newsItem.link;
+                link.title = newsItem.linkTitle;
+                link.target = '_blank';
+                link.innerHTML = '<i class="' + newsItem.linkIcon + '"></i>';
+
+                card.appendChild(badge);
+                card.appendChild(description);
+                card.appendChild(link);
+
+                return card;
+            }
+        })();
+
+        // Load and render publications from JSON
+        (function() {
+            fetch('data/publications.json')
+                .then(function(response) {
+                    if (!response.ok) {
+                        throw new Error('Failed to load publications data');
+                    }
+                    return response.json();
+                })
+                .then(function(data) {
+                    const container = document.getElementById('publications-container');
+
+                    data.publications.forEach(function(publication) {
+                        const paper = createPaperElement(publication);
+                        container.appendChild(paper);
+                    });
+                })
+                .catch(function(error) {
+                    console.error('Error loading publications:', error);
+                });
+
+            function createPaperElement(publication) {
+                const paper = document.createElement('div');
+                paper.className = 'paper';
+
+                const title = document.createElement('div');
+                title.className = 'paper-title';
+                title.textContent = publication.title;
+
+                const meta = document.createElement('div');
+                meta.className = 'paper-meta';
+                // Replace "Thomas Pierrot" with <strong>Thomas Pierrot</strong>
+                const authorsHTML = publication.authors.replace(/Thomas Pierrot/g, '<strong>Thomas Pierrot</strong>');
+                meta.innerHTML = authorsHTML + '<br><em>' + publication.venue + '</em>';
+
+                const links = document.createElement('div');
+                links.className = 'paper-links';
+
+                publication.links.forEach(function(link) {
+                    const anchor = document.createElement('a');
+                    anchor.href = link.url;
+                    anchor.textContent = link.text;
+                    links.appendChild(anchor);
+                });
+
+                paper.appendChild(title);
+                paper.appendChild(meta);
+                paper.appendChild(links);
+
+                return paper;
+            }
         })();
 
         // Load and render talks from JSON
