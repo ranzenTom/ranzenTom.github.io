@@ -1,0 +1,172 @@
+{
+  "publications": [
+    {
+      "title": "A foundational model for joint sequence-function multi-species modeling at scale for long-range genomic prediction",
+      "authors": "Sam Boshar, Benjamin Evans, Ziqi Tang, ..., Thomas Pierrot.",
+      "venue": "bioRxiv",
+      "year": 2025,
+      "category": "bio-ai",
+      "highlights": [],
+      "links": [
+        {
+          "text": "Preprint",
+          "url": "https://www.biorxiv.org/content/10.64898/2025.12.22.695963v1"
+        }
+      ]
+    },
+    {
+      "title": "A multimodal conversational agent for DNA, RNA and protein tasks",
+      "authors": "Bernardo P. de Almeida, Guillaume Richard, Hugo Dalla-Torre, ..., Thomas Pierrot.",
+      "venue": "Nature Machine Intelligence",
+      "year": 2025,
+      "category": "bio-ai",
+      "highlights": ["Cover Article"],
+      "links": [
+        {
+          "text": "Paper",
+          "url": "https://www.nature.com/articles/s42256-025-01047-1"
+        }
+      ]
+    },
+    {
+      "title": "Annotating the genome at single-nucleotide resolution with DNA foundation models",
+      "authors": "Bernardo P. de Almeida, Hugo Dalla-Torre, Guillaume Richard, ..., Thomas Pierrot.",
+      "venue": "Nature Methods",
+      "year": 2025,
+      "category": "bio-ai",
+      "highlights": [],
+      "links": [
+        {
+          "text": "Paper",
+          "url": "https://www.nature.com/articles/s41592-025-02881-2"
+        }
+      ]
+    },
+    {
+      "title": "Simple Guidance Mechanisms for Discrete Diffusion Models",
+      "authors": "Yair Schiff, Subham Sekhar Sahoo, Hao Phung, ..., Thomas Pierrot, Volodymyr Kuleshov.",
+      "venue": "ICLR",
+      "year": 2025,
+      "category": "fundamental-ai",
+      "highlights": [],
+      "links": [
+        {
+          "text": "Preprint",
+          "url": "https://arxiv.org/abs/2412.10193"
+        }
+      ]
+    },
+    {
+      "title": "Multi-modal Transfer Learning between Biological Foundation Models",
+      "authors": "Juan Jose Garau-Luis, Patrick Bordes, Liam Gonzalez, ..., Thomas Pierrot, Guillaume Richard.",
+      "venue": "NeurIPS",
+      "year": 2024,
+      "category": "bio-ai",
+      "highlights": [],
+      "links": [
+        {
+          "text": "Paper",
+          "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/8f6b3692297e49e5d5c91ba00281379c-Abstract-Conference.html"
+        }
+      ]
+    },
+    {
+      "title": "Nucleotide Transformer: building and evaluating robust foundation models for human genomics",
+      "authors": "Hugo Dalla-Torre, Liam Gonzalez, Javier Mendoza-Revilla, ..., Marie Lopez, Thomas Pierrot.",
+      "venue": "Nature Methods",
+      "year": 2024,
+      "category": "bio-ai",
+      "highlights": [],
+      "links": [
+        {
+          "text": "Paper",
+          "url": "https://www.nature.com/articles/s41592-024-02523-z"
+        }
+      ]
+    },
+    {
+      "title": "A foundational large language model for edible plant genomes",
+      "authors": "Javier Mendoza-Revilla, Evan Trop, Liam Gonzalez, ..., Thomas Pierrot, Marie Lopez.",
+      "venue": "Communications Biology",
+      "year": 2024,
+      "category": "bio-ai",
+      "highlights": [],
+      "links": [
+        {
+          "text": "Paper",
+          "url": "https://doi.org/10.1038/s42003-024-06465-2"
+        }
+      ]
+    },
+    {
+      "title": "Neuroevolution is a competitive alternative to reinforcement learning for skill discovery",
+      "authors": "Felix Chalumeau, Raphael Boige, Bryan Lim, Valentin Macé, Maxime Allard, Arthur Flajolet, Antoine Cully, Thomas Pierrot.",
+      "venue": "ICLR",
+      "year": 2023,
+      "category": "fundamental-ai",
+      "highlights": ["Spotlight"],
+      "links": [
+        {
+          "text": "Paper",
+          "url": "https://openreview.net/forum?id=VmruLturAUE"
+        }
+      ]
+    },
+    {
+      "title": "Evolving Populations of Diverse RL Agents with MAP-Elites",
+      "authors": "Thomas Pierrot, Arthur Flajolet.",
+      "venue": "ICLR",
+      "year": 2023,
+      "category": "fundamental-ai",
+      "highlights": [],
+      "links": [
+        {
+          "text": "Paper",
+          "url": "https://openreview.net/pdf/7647093a5e985828f881513eb78bf7d36bde7a04.pdf"
+        }
+      ]
+    },
+    {
+      "title": "Multi-objective quality diversity optimization",
+      "authors": "Thomas Pierrot, Guillaume Richard, Karim Beguir, Antoine Cully.",
+      "venue": "GECCO",
+      "year": 2022,
+      "category": "fundamental-ai",
+      "highlights": [],
+      "links": [
+        {
+          "text": "Paper",
+          "url": "https://dl.acm.org/doi/10.1145/3512290.3528823"
+        }
+      ]
+    },
+    {
+      "title": "Diversity policy gradient for sample efficient quality-diversity optimization",
+      "authors": "Thomas Pierrot, Valentin Macé, Félix Chalumeau, Arthur Flajolet, Geoffrey Cideron, Karim Beguir.",
+      "venue": "GECCO",
+      "year": 2022,
+      "category": "fundamental-ai",
+      "highlights": [],
+      "links": [
+        {
+          "text": "Paper",
+          "url": "https://dl.acm.org/doi/10.1145/3512290.3528845"
+        }
+      ]
+    },
+    {
+      "title": "Learning Compositional Neural Programs with Recursive Tree Search and Planning",
+      "authors": "Thomas Pierrot, Guillaume Ligner, Scott Reed, ..., Nando de Freitas.",
+      "venue": "NeurIPS",
+      "year": 2019,
+      "category": "fundamental-ai",
+      "highlights": ["Spotlight"],
+      "links": [
+        {
+          "text": "Paper",
+          "url": "https://shorturl.at/au4qg"
+        }
+      ]
+    }
+  ]
+}
