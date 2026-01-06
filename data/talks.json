@@ -1,0 +1,67 @@
+{
+  "talks": [
+    {
+      "title": "Nucleotide Transformer",
+      "venue": "YouTube",
+      "date": "March 15, 2024",
+      "video": "https://www.youtube.com/watch?v=09pXsXCAw7E",
+      "type": "video"
+    },
+    {
+      "title": "Foundation Models for Genomics",
+      "venue": "YouTube",
+      "date": "January 20, 2024",
+      "video": "https://www.youtube.com/watch?v=KKhtWU-eriY",
+      "type": "video"
+    },
+    {
+      "title": "AI for Biology",
+      "venue": "YouTube",
+      "date": "September 10, 2023",
+      "video": "https://www.youtube.com/watch?v=TtAmWl9lTIU",
+      "type": "video"
+    },
+    {
+      "title": "Deep RL & Evolution",
+      "venue": "YouTube",
+      "date": "June 5, 2023",
+      "video": "https://www.youtube.com/watch?v=wxZ9ERqzc-E",
+      "type": "video"
+    },
+    {
+      "title": "MAP-Elites & RL",
+      "venue": "YouTube",
+      "date": "November 12, 2022",
+      "video": "https://www.youtube.com/watch?v=u9TwHINqd1o",
+      "type": "video"
+    },
+    {
+      "title": "Cold Spring Harbor Asia",
+      "venue": "Suzhou, China",
+      "date": "October 15, 2025",
+      "link": "https://www.csh-asia.org/?content/2767",
+      "type": "presentation"
+    },
+    {
+      "title": "CSHL Information Processing",
+      "venue": "Cold Spring Harbor",
+      "date": "May 8, 2025",
+      "link": "https://meetings.cshl.edu/abstracts.aspx?meet=INFO&year=25",
+      "type": "presentation"
+    },
+    {
+      "title": "MBZUAI Workshop",
+      "venue": "Abu Dhabi",
+      "date": "February 22, 2025",
+      "link": "https://mbzuai.ac.ae/event/mbzuai-workshop-2025/",
+      "type": "presentation"
+    },
+    {
+      "title": "NVIDIA GTC",
+      "venue": "San Jose",
+      "date": "March 21, 2023",
+      "link": "https://www.linkedin.com/posts/instadeep_nvidia-gtc-nvidiagtc-activity-7043891501621231616-kYjJ",
+      "type": "presentation"
+    }
+  ]
+}
