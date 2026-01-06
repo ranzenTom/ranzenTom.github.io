@@ -199,18 +199,104 @@
         }
 
         /* Publication List Styling */
+        .publications-filters {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1.5px solid var(--accent-color);
+            background: transparent;
+            color: var(--accent-color);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            letter-spacing: 0.02em;
+        }
+
+        .filter-btn:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 124, 126, 0.3);
+        }
+
+        .filter-btn.active {
+            background: var(--accent-color);
+            color: white;
+            box-shadow: 0 2px 8px rgba(74, 124, 126, 0.2);
+        }
+
         .paper {
             margin-bottom: 28px;
             padding: 20px 24px;
             background: var(--card-bg);
             border-radius: 8px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-            transition: box-shadow 0.2s ease;
+            transition: all 0.3s ease;
             text-align: left;
             position: relative;
+            opacity: 1;
+            max-height: 500px;
+            overflow: hidden;
         }
+
+        .paper.hidden {
+            display: none;
+        }
+
         .paper:hover {
             box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .show-more-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .show-more-btn {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 8px 20px;
+            border-radius: 20px;
+            border: 1.5px solid var(--accent-color);
+            background: transparent;
+            color: var(--accent-color);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 0.02em;
+        }
+
+        .show-more-btn:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 124, 126, 0.3);
+        }
+
+        .show-more-btn i {
+            transition: transform 0.25s ease;
+            font-size: 0.75rem;
+        }
+
+        .show-more-btn.expanded i {
+            transform: rotate(180deg);
+        }
+
+        .show-more-btn.hidden {
+            display: none;
         }
         .paper-header {
             display: flex;
@@ -1230,8 +1316,19 @@
     <section id="publications">
         <div class="section-content">
             <h2>Selected Publications</h2>
+            <div class="publications-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="bio-ai">Bio + AI</button>
+                <button class="filter-btn" data-filter="fundamental-ai">Fundamental AI</button>
+            </div>
             <div id="publications-container">
                 <!-- Publications will be dynamically loaded here -->
+            </div>
+            <div class="show-more-container">
+                <button class="show-more-btn" id="show-more-btn">
+                    <span class="show-more-text">Show More</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
             </div>
         </div>
     </section>
@@ -1444,6 +1541,11 @@
 
         // Load and render publications from JSON
         (function() {
+            let allPublications = [];
+            let currentFilter = 'all';
+            let showingAll = false;
+            const INITIAL_DISPLAY_COUNT = 5;
+
             fetch('data/publications.json')
                 .then(function(response) {
                     if (!response.ok) {
@@ -1452,20 +1554,96 @@
                     return response.json();
                 })
                 .then(function(data) {
-                    const container = document.getElementById('publications-container');
-
-                    data.publications.forEach(function(publication) {
-                        const paper = createPaperElement(publication);
-                        container.appendChild(paper);
-                    });
+                    allPublications = data.publications;
+                    renderPublications();
+                    setupFilterButtons();
+                    setupShowMoreButton();
                 })
                 .catch(function(error) {
                     console.error('Error loading publications:', error);
                 });
 
+            function renderPublications() {
+                const container = document.getElementById('publications-container');
+                container.innerHTML = '';
+
+                const filteredPublications = currentFilter === 'all'
+                    ? allPublications
+                    : allPublications.filter(function(pub) { return pub.category === currentFilter; });
+
+                const displayCount = showingAll ? filteredPublications.length : Math.min(INITIAL_DISPLAY_COUNT, filteredPublications.length);
+
+                filteredPublications.forEach(function(publication, index) {
+                    const paper = createPaperElement(publication);
+                    if (index >= displayCount) {
+                        paper.classList.add('hidden');
+                    }
+                    container.appendChild(paper);
+                });
+
+                updateShowMoreButton(filteredPublications.length);
+            }
+
+            function updateShowMoreButton(totalCount) {
+                const showMoreBtn = document.getElementById('show-more-btn');
+                const showMoreText = showMoreBtn.querySelector('.show-more-text');
+
+                if (totalCount <= INITIAL_DISPLAY_COUNT) {
+                    showMoreBtn.classList.add('hidden');
+                } else {
+                    showMoreBtn.classList.remove('hidden');
+                    if (showingAll) {
+                        showMoreText.textContent = 'Show Less';
+                        showMoreBtn.classList.add('expanded');
+                    } else {
+                        showMoreText.textContent = 'Show More';
+                        showMoreBtn.classList.remove('expanded');
+                    }
+                }
+            }
+
+            function setupFilterButtons() {
+                const filterButtons = document.querySelectorAll('.filter-btn');
+
+                filterButtons.forEach(function(btn) {
+                    btn.addEventListener('click', function() {
+                        filterButtons.forEach(function(b) { b.classList.remove('active'); });
+                        this.classList.add('active');
+                        currentFilter = this.getAttribute('data-filter');
+                        showingAll = false;
+                        renderPublications();
+                    });
+                });
+            }
+
+            function setupShowMoreButton() {
+                const showMoreBtn = document.getElementById('show-more-btn');
+
+                showMoreBtn.addEventListener('click', function() {
+                    showingAll = !showingAll;
+                    const papers = document.querySelectorAll('.paper');
+
+                    papers.forEach(function(paper, index) {
+                        if (showingAll) {
+                            paper.classList.remove('hidden');
+                        } else if (index >= INITIAL_DISPLAY_COUNT) {
+                            paper.classList.add('hidden');
+                        }
+                    });
+
+                    updateShowMoreButton(papers.length);
+
+                    // Scroll to publications section if collapsing
+                    if (!showingAll) {
+                        document.getElementById('publications').scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            }
+
             function createPaperElement(publication) {
                 const paper = document.createElement('div');
                 paper.className = 'paper';
+                paper.setAttribute('data-category', publication.category);
 
                 // Create header with title and links
                 const header = document.createElement('div');
