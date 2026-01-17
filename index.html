@@ -160,6 +160,17 @@
             transform: translateY(-1px);
         }
 
+        /* About content links */
+        #about-content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        #about-content a:hover {
+            color: var(--primary-color);
+        }
+
         /* Section Styling - Full width with alternating backgrounds */
         section {
             width: 100%;
@@ -841,7 +852,7 @@
         }
 
         .talk-card {
-            flex: 0 0 280px;
+            flex: 0 0 340px;
             background: var(--card-bg);
             padding: 24px;
             border-radius: 12px;
@@ -861,6 +872,32 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.1);
             transform: translateY(-4px);
             border-color: var(--accent-color);
+        }
+
+        .talk-card.upcoming {
+            background:
+                repeating-linear-gradient(
+                    135deg,
+                    transparent,
+                    transparent 8px,
+                    rgba(74, 124, 126, 0.06) 8px,
+                    rgba(74, 124, 126, 0.06) 16px
+                ),
+                var(--card-bg);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .talk-card.upcoming {
+                background:
+                    repeating-linear-gradient(
+                        135deg,
+                        transparent,
+                        transparent 8px,
+                        rgba(107, 163, 165, 0.08) 8px,
+                        rgba(107, 163, 165, 0.08) 16px
+                    ),
+                    var(--card-bg);
+            }
         }
 
         .talk-header {
@@ -900,11 +937,19 @@
             font-size: 0.7rem;
         }
 
+        .talk-subtitle {
+            font-style: italic;
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            margin: 0;
+            line-height: 1.4;
+            flex: 1;
+        }
+
         .talk-details {
             display: flex;
             flex-direction: column;
             gap: 8px;
-            flex: 1;
         }
 
         .talk-detail-item {
@@ -959,7 +1004,7 @@
                 padding: 0 30px;
             }
             .talk-card {
-                flex: 0 0 260px;
+                flex: 0 0 300px;
             }
         }
 
@@ -969,7 +1014,7 @@
                 padding: 0 20px;
             }
             .talk-card {
-                flex: 0 0 240px;
+                flex: 0 0 280px;
                 padding: 18px;
                 gap: 12px;
             }
@@ -981,6 +1026,9 @@
                 padding: 3px 8px;
             }
             .talk-detail-item {
+                font-size: 0.85rem;
+            }
+            .talk-subtitle {
                 font-size: 0.85rem;
             }
             .talk-link {
@@ -1218,16 +1266,9 @@
     <section id="about">
         <div class="section-content">
             <h2>About</h2>
-            <p>
-                I am a Staff Research Scientist and Manager at <strong>InstaDeep (BioNTech Group)</strong>, 
-                where I lead the Genomics AI research program. My work focuses on building large-scale foundation models for 
-                genomics and molecular biology (DNA/RNA), as well as deploying them in real-world biotech settings.
-            </p>
-            <p>
-                My broader research interests include <strong>Deep Reinforcement Learning</strong>, <strong>Large Language Models</strong>, 
-                and <strong>Neuroevolution</strong>. I previously completed my PhD at Sorbonne University, focusing on sample efficiency in Deep RL, 
-                and collaborated with Google DeepMind and Imperial College London.
-            </p>
+            <div id="about-content">
+                <!-- About content will be dynamically loaded from content/about.md -->
+            </div>
 
             <div class="about-columns">
                 <!-- Education Column -->
@@ -1492,9 +1533,34 @@
             });
         })();
 
+        // Load and render about content from Markdown
+        (function() {
+            fetch('content/about.md')
+                .then(function(response) {
+                    if (!response.ok) {
+                        throw new Error('Failed to load about content');
+                    }
+                    return response.text();
+                })
+                .then(function(markdown) {
+                    const container = document.getElementById('about-content');
+                    // Split by double newlines to get paragraphs
+                    const paragraphs = markdown.trim().split(/\n\n+/);
+                    const html = paragraphs.map(function(p) {
+                        // Convert **text** to <strong>text</strong>
+                        const converted = p.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+                        return '<p>' + converted + '</p>';
+                    }).join('\n');
+                    container.innerHTML = html;
+                })
+                .catch(function(error) {
+                    console.error('Error loading about content:', error);
+                });
+        })();
+
         // Load and render news from JSON
         (function() {
-            fetch('data/news.json')
+            fetch('content/news.json')
                 .then(function(response) {
                     if (!response.ok) {
                         throw new Error('Failed to load news data');
@@ -1546,7 +1612,7 @@
             let showingAll = false;
             const INITIAL_DISPLAY_COUNT = 5;
 
-            fetch('data/publications.json')
+            fetch('content/publications.json')
                 .then(function(response) {
                     if (!response.ok) {
                         throw new Error('Failed to load publications data');
@@ -1567,9 +1633,12 @@
                 const container = document.getElementById('publications-container');
                 container.innerHTML = '';
 
+                // Sort by year descending (most recent first)
+                const sortedPublications = allPublications.slice().sort(function(a, b) { return b.year - a.year; });
+
                 const filteredPublications = currentFilter === 'all'
-                    ? allPublications
-                    : allPublications.filter(function(pub) { return pub.category === currentFilter; });
+                    ? sortedPublications
+                    : sortedPublications.filter(function(pub) { return pub.category === currentFilter; });
 
                 const displayCount = showingAll ? filteredPublications.length : Math.min(INITIAL_DISPLAY_COUNT, filteredPublications.length);
 
@@ -1707,7 +1776,7 @@
 
         // Load and render talks from JSON
         (function() {
-            fetch('data/talks.json')
+            fetch('content/talks.json')
                 .then(function(response) {
                     if (!response.ok) {
                         throw new Error('Failed to load talks data');
@@ -1735,7 +1804,7 @@
 
             function createTalkCard(talk) {
                 const card = document.createElement('a');
-                card.className = 'talk-card';
+                card.className = 'talk-card' + (talk.status === 'upcoming' ? ' upcoming' : '');
                 card.href = talk.video || talk.link;
                 card.target = '_blank';
                 card.rel = 'noopener noreferrer';
@@ -1743,10 +1812,6 @@
                 // Create header section
                 const header = document.createElement('div');
                 header.className = 'talk-header';
-
-                const title = document.createElement('h3');
-                title.className = 'talk-title';
-                title.textContent = talk.title;
 
                 const typeBadge = document.createElement('span');
                 typeBadge.className = 'talk-type-badge';
@@ -1757,22 +1822,31 @@
                     typeBadge.innerHTML = '<i class="fa-solid fa-microphone"></i> Talk';
                 }
 
-                header.appendChild(title);
+                const venue = document.createElement('h3');
+                venue.className = 'talk-title';
+                venue.textContent = talk.venue;
+
                 header.appendChild(typeBadge);
+                header.appendChild(venue);
+
+                // Create talk title section (the actual talk name)
+                const talkTitleEl = document.createElement('p');
+                talkTitleEl.className = 'talk-subtitle';
+                talkTitleEl.textContent = '"' + talk.talkTitle + '"';
 
                 // Create details section
                 const details = document.createElement('div');
                 details.className = 'talk-details';
 
-                const venueItem = document.createElement('div');
-                venueItem.className = 'talk-detail-item';
-                venueItem.innerHTML = '<i class="fa-solid fa-building"></i><span>' + talk.venue + '</span>';
+                const locationItem = document.createElement('div');
+                locationItem.className = 'talk-detail-item';
+                locationItem.innerHTML = '<i class="fa-solid fa-location-dot"></i><span>' + talk.location + '</span>';
 
                 const dateItem = document.createElement('div');
                 dateItem.className = 'talk-detail-item';
                 dateItem.innerHTML = '<i class="fa-solid fa-calendar"></i><span>' + talk.date + '</span>';
 
-                details.appendChild(venueItem);
+                details.appendChild(locationItem);
                 details.appendChild(dateItem);
 
                 // Create link button
@@ -1787,6 +1861,7 @@
 
                 // Assemble the card
                 card.appendChild(header);
+                card.appendChild(talkTitleEl);
                 card.appendChild(details);
                 card.appendChild(linkButton);
 

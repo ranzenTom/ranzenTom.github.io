@@ -1,0 +1,7 @@
+My background is in **applied mathematics and physics**. I trained as an aerospace engineer at Supaero and Imperial College London before transitioning to machine learning. I completed my PhD at Sorbonne University in 2021, focusing on **deep reinforcement learning** with applications to robotics, in collaboration with Google DeepMind.
+
+I joined InstaDeep in 2018 when they opened their Paris office, as one of the first employees, and founded the Paris research team in 2020 with a focus on RL and neuroevolution for industrial applications. In 2022, I moved to Boston to open the US office and build the American research team. Later that year, InstaDeep was acquired by BioNTech for $650M.
+
+Today, as a **Staff Research Scientist and Manager**, I head the Genomics AI research program from NYC. My team spans multiple locations including New York, Paris, and London, and is responsible for developing and deploying the foundation models for genomics and transcriptomics across the company. 
+
+Our models are deployed both internally at BioNTech and for external customers in industries such as agritech. We are committed to open-sourcing our work—see our <a href="https://github.com/instadeepai/nucleotide-transformer" target="_blank">GitHub</a> and <a href="https://huggingface.co/InstaDeepAI" target="_blank">HuggingFace</a>—and publish our research in top venues including Nature Methods, Nature Machine Intelligence, and leading AI conferences such as NeurIPS.
