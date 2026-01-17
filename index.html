@@ -1230,7 +1230,7 @@
         <div class="section-content">
             <h2>About</h2>
             <div id="about-content">
-                <!-- About content will be dynamically loaded from data/about.md -->
+                <!-- About content will be dynamically loaded from content/about.md -->
             </div>
 
             <div class="about-columns">
@@ -1498,7 +1498,7 @@
 
         // Load and render about content from Markdown
         (function() {
-            fetch('data/about.md')
+            fetch('content/about.md')
                 .then(function(response) {
                     if (!response.ok) {
                         throw new Error('Failed to load about content');
@@ -1523,7 +1523,7 @@
 
         // Load and render news from JSON
         (function() {
-            fetch('data/news.json')
+            fetch('content/news.json')
                 .then(function(response) {
                     if (!response.ok) {
                         throw new Error('Failed to load news data');
@@ -1575,7 +1575,7 @@
             let showingAll = false;
             const INITIAL_DISPLAY_COUNT = 5;
 
-            fetch('data/publications.json')
+            fetch('content/publications.json')
                 .then(function(response) {
                     if (!response.ok) {
                         throw new Error('Failed to load publications data');
@@ -1739,7 +1739,7 @@
 
         // Load and render talks from JSON
         (function() {
-            fetch('data/talks.json')
+            fetch('content/talks.json')
                 .then(function(response) {
                     if (!response.ok) {
                         throw new Error('Failed to load talks data');
