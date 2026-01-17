@@ -841,7 +841,7 @@
         }
 
         .talk-card {
-            flex: 0 0 280px;
+            flex: 0 0 340px;
             background: var(--card-bg);
             padding: 24px;
             border-radius: 12px;
@@ -900,11 +900,19 @@
             font-size: 0.7rem;
         }
 
+        .talk-subtitle {
+            font-style: italic;
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            margin: 0;
+            line-height: 1.4;
+            flex: 1;
+        }
+
         .talk-details {
             display: flex;
             flex-direction: column;
             gap: 8px;
-            flex: 1;
         }
 
         .talk-detail-item {
@@ -959,7 +967,7 @@
                 padding: 0 30px;
             }
             .talk-card {
-                flex: 0 0 260px;
+                flex: 0 0 300px;
             }
         }
 
@@ -969,7 +977,7 @@
                 padding: 0 20px;
             }
             .talk-card {
-                flex: 0 0 240px;
+                flex: 0 0 280px;
                 padding: 18px;
                 gap: 12px;
             }
@@ -981,6 +989,9 @@
                 padding: 3px 8px;
             }
             .talk-detail-item {
+                font-size: 0.85rem;
+            }
+            .talk-subtitle {
                 font-size: 0.85rem;
             }
             .talk-link {
@@ -1567,9 +1578,12 @@
                 const container = document.getElementById('publications-container');
                 container.innerHTML = '';
 
+                // Sort by year descending (most recent first)
+                const sortedPublications = allPublications.slice().sort(function(a, b) { return b.year - a.year; });
+
                 const filteredPublications = currentFilter === 'all'
-                    ? allPublications
-                    : allPublications.filter(function(pub) { return pub.category === currentFilter; });
+                    ? sortedPublications
+                    : sortedPublications.filter(function(pub) { return pub.category === currentFilter; });
 
                 const displayCount = showingAll ? filteredPublications.length : Math.min(INITIAL_DISPLAY_COUNT, filteredPublications.length);
 
@@ -1744,10 +1758,6 @@
                 const header = document.createElement('div');
                 header.className = 'talk-header';
 
-                const title = document.createElement('h3');
-                title.className = 'talk-title';
-                title.textContent = talk.title;
-
                 const typeBadge = document.createElement('span');
                 typeBadge.className = 'talk-type-badge';
 
@@ -1757,22 +1767,31 @@
                     typeBadge.innerHTML = '<i class="fa-solid fa-microphone"></i> Talk';
                 }
 
-                header.appendChild(title);
+                const venue = document.createElement('h3');
+                venue.className = 'talk-title';
+                venue.textContent = talk.venue;
+
                 header.appendChild(typeBadge);
+                header.appendChild(venue);
+
+                // Create talk title section (the actual talk name)
+                const talkTitleEl = document.createElement('p');
+                talkTitleEl.className = 'talk-subtitle';
+                talkTitleEl.textContent = '"' + talk.talkTitle + '"';
 
                 // Create details section
                 const details = document.createElement('div');
                 details.className = 'talk-details';
 
-                const venueItem = document.createElement('div');
-                venueItem.className = 'talk-detail-item';
-                venueItem.innerHTML = '<i class="fa-solid fa-building"></i><span>' + talk.venue + '</span>';
+                const locationItem = document.createElement('div');
+                locationItem.className = 'talk-detail-item';
+                locationItem.innerHTML = '<i class="fa-solid fa-location-dot"></i><span>' + talk.location + '</span>';
 
                 const dateItem = document.createElement('div');
                 dateItem.className = 'talk-detail-item';
                 dateItem.innerHTML = '<i class="fa-solid fa-calendar"></i><span>' + talk.date + '</span>';
 
-                details.appendChild(venueItem);
+                details.appendChild(locationItem);
                 details.appendChild(dateItem);
 
                 // Create link button
@@ -1787,6 +1806,7 @@
 
                 // Assemble the card
                 card.appendChild(header);
+                card.appendChild(talkTitleEl);
                 card.appendChild(details);
                 card.appendChild(linkButton);
 

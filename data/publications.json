@@ -1,6 +1,20 @@
 {
   "publications": [
     {
+      "title": "Early computational detection of potential high-risk SARS-CoV-2 variants",
+      "authors": "Karim Beguir, Marcin J. Skwark, Yunguan Fu, Thomas Pierrot, ..., Alexander Muik, Uğur Şahin.",
+      "venue": "Computers in Biology and Medicine",
+      "year": 2023,
+      "category": "bio-ai",
+      "highlights": [],
+      "links": [
+        {
+          "text": "Paper",
+          "url": "https://doi.org/10.1016/j.compbiomed.2023.106618"
+        }
+      ]
+    },
+    {
       "title": "A foundational model for joint sequence-function multi-species modeling at scale for long-range genomic prediction",
       "authors": "Sam Boshar, Benjamin Evans, Ziqi Tang, ..., Thomas Pierrot.",
       "venue": "bioRxiv",
