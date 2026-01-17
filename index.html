@@ -1229,16 +1229,9 @@
     <section id="about">
         <div class="section-content">
             <h2>About</h2>
-            <p>
-                I am a Staff Research Scientist and Manager at <strong>InstaDeep (BioNTech Group)</strong>, 
-                where I lead the Genomics AI research program. My work focuses on building large-scale foundation models for 
-                genomics and molecular biology (DNA/RNA), as well as deploying them in real-world biotech settings.
-            </p>
-            <p>
-                My broader research interests include <strong>Deep Reinforcement Learning</strong>, <strong>Large Language Models</strong>, 
-                and <strong>Neuroevolution</strong>. I previously completed my PhD at Sorbonne University, focusing on sample efficiency in Deep RL, 
-                and collaborated with Google DeepMind and Imperial College London.
-            </p>
+            <div id="about-content">
+                <!-- About content will be dynamically loaded from data/about.md -->
+            </div>
 
             <div class="about-columns">
                 <!-- Education Column -->
@@ -1501,6 +1494,31 @@
                     }
                 });
             });
+        })();
+
+        // Load and render about content from Markdown
+        (function() {
+            fetch('data/about.md')
+                .then(function(response) {
+                    if (!response.ok) {
+                        throw new Error('Failed to load about content');
+                    }
+                    return response.text();
+                })
+                .then(function(markdown) {
+                    const container = document.getElementById('about-content');
+                    // Split by double newlines to get paragraphs
+                    const paragraphs = markdown.trim().split(/\n\n+/);
+                    const html = paragraphs.map(function(p) {
+                        // Convert **text** to <strong>text</strong>
+                        const converted = p.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+                        return '<p>' + converted + '</p>';
+                    }).join('\n');
+                    container.innerHTML = html;
+                })
+                .catch(function(error) {
+                    console.error('Error loading about content:', error);
+                });
         })();
 
         // Load and render news from JSON

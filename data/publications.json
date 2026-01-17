@@ -1,6 +1,62 @@
 {
   "publications": [
     {
+      "title": "Are genomic language models all you need? Exploring genomic language models on protein downstream tasks",
+      "authors": "Sam Boshar, Evan Trop, Bernardo P. de Almeida, Liviu Copoiu, Thomas Pierrot.",
+      "venue": "Bioinformatics",
+      "year": 2024,
+      "category": "bio-ai",
+      "highlights": [],
+      "links": [
+        {
+          "text": "Paper",
+          "url": "https://doi.org/10.1093/bioinformatics/btae529"
+        }
+      ]
+    },
+    {
+      "title": "Advancing DNA Language Models: The Genomics Long-Range Benchmark",
+      "authors": "Chia-Hsiang Kao, Evan Trop, McKinley Polen, Yair Schiff, Bernardo P. de Almeida, Aaron Gokaslan, Thomas Pierrot, Volodymyr Kuleshov.",
+      "venue": "LLMS4bio (AAAI)",
+      "year": 2024,
+      "category": "bio-ai",
+      "highlights": [],
+      "links": [
+        {
+          "text": "Paper",
+          "url": "https://llms4science-community.github.io/aaai2024/papers/LLMs4Bio24_paper_12.pdf"
+        }
+      ]
+    },
+    {
+      "title": "Fast Population-Based Reinforcement Learning on a Single Machine",
+      "authors": "Arthur Flajolet, Claire Bizon Monroc, Karim Beguir, Thomas Pierrot.",
+      "venue": "ICML",
+      "year": 2022,
+      "category": "fundamental-ai",
+      "highlights": [],
+      "links": [
+        {
+          "text": "Paper",
+          "url": "https://proceedings.mlr.press/v162/flajolet22a.html"
+        }
+      ]
+    },
+    {
+      "title": "QDax: A Library for Quality-Diversity and Population-based Algorithms with Hardware Acceleration",
+      "authors": "Felix Chalumeau, Bryan Lim, Raphaël Boige, ..., Thomas Pierrot, Antoine Cully.",
+      "venue": "JMLR",
+      "year": 2024,
+      "category": "fundamental-ai",
+      "highlights": [],
+      "links": [
+        {
+          "text": "Paper",
+          "url": "https://jmlr.org/papers/v25/23-1027.html"
+        }
+      ]
+    },
+    {
       "title": "Early computational detection of potential high-risk SARS-CoV-2 variants",
       "authors": "Karim Beguir, Marcin J. Skwark, Yunguan Fu, Thomas Pierrot, ..., Alexander Muik, Uğur Şahin.",
       "venue": "Computers in Biology and Medicine",
@@ -165,6 +221,20 @@
         {
           "text": "Paper",
           "url": "https://dl.acm.org/doi/10.1145/3512290.3528845"
+        }
+      ]
+    },
+    {
+      "title": "BulkRNABert: Cancer prognosis from bulk RNA-seq based language models",
+      "authors": "Maxence Gélard, Guillaume Richard, Thomas Pierrot, Paul-Henry Cournède.",
+      "venue": "ML4H (PMLR)",
+      "year": 2025,
+      "category": "bio-ai",
+      "highlights": [],
+      "links": [
+        {
+          "text": "Paper",
+          "url": "https://proceedings.mlr.press/v259/gelard25a.html"
         }
       ]
     },
