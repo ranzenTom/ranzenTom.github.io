@@ -874,6 +874,32 @@
             border-color: var(--accent-color);
         }
 
+        .talk-card.upcoming {
+            background:
+                repeating-linear-gradient(
+                    135deg,
+                    transparent,
+                    transparent 8px,
+                    rgba(74, 124, 126, 0.06) 8px,
+                    rgba(74, 124, 126, 0.06) 16px
+                ),
+                var(--card-bg);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .talk-card.upcoming {
+                background:
+                    repeating-linear-gradient(
+                        135deg,
+                        transparent,
+                        transparent 8px,
+                        rgba(107, 163, 165, 0.08) 8px,
+                        rgba(107, 163, 165, 0.08) 16px
+                    ),
+                    var(--card-bg);
+            }
+        }
+
         .talk-header {
             display: flex;
             justify-content: space-between;
@@ -1778,7 +1804,7 @@
 
             function createTalkCard(talk) {
                 const card = document.createElement('a');
-                card.className = 'talk-card';
+                card.className = 'talk-card' + (talk.status === 'upcoming' ? ' upcoming' : '');
                 card.href = talk.video || talk.link;
                 card.target = '_blank';
                 card.rel = 'noopener noreferrer';

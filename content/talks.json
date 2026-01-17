@@ -1,6 +1,15 @@
 {
   "talks": [
     {
+      "venue": "Cold Spring Harbor Symposium",
+      "talkTitle": "AI in Biology - 90th Symposium on Quantitative Biology",
+      "location": "Cold Spring Harbor, NY, USA",
+      "date": "May 26, 2026",
+      "link": "https://meetings.cshl.edu/meetings.aspx?meet=SYMP",
+      "type": "presentation",
+      "status": "upcoming"
+    },
+    {
       "venue": "Kipoi Seminar",
       "talkTitle": "The Nucleotide Transformer: building and evaluating robust foundation models for genomics",
       "location": "Online",
