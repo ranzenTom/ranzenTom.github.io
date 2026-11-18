@@ -97,7 +97,7 @@ h1, h2, h3, h4, h5, h6 {
     border: 5px solid var(--card-bg);
     box-shadow: 0 8px 24px rgba(0,0,0,0.1);
     background-color: #e8e8e8;
-    background-image: url('profile_picture.jpg');
+    background-image: url('../profile_picture.jpg');
     background-size: cover;
     background-position: center;
     flex-shrink: 0;
@@ -1206,3 +1206,5 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--accent-color); 
     html { scroll-behavior: auto; }
     *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+.banner picture[hidden] { display: none; }

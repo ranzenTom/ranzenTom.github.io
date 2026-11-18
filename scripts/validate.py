@@ -1,9 +1,10 @@
 """Validate the static site's content and local references using Python's stdlib."""
 import datetime
 import json
+import re
 from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -45,10 +46,10 @@ class Page(HTMLParser):
 
 
 page = Page()
-page.feed((ROOT / 'index.html').read_text())
+page.feed((ROOT / 'index.html').read_text(encoding='utf-8'))
 require(set(page.fragments) <= page.ids, 'Missing fragment target')
 for group in ('news', 'publications', 'talks'):
-    entries = json.loads((ROOT / 'content' / f'{group}.json').read_text())[group]
+    entries = json.loads((ROOT / 'content' / f'{group}.json').read_text(encoding='utf-8'))[group]
     require(isinstance(entries, list), f'{group} must be an array')
     for entry in entries:
         if group == 'news':
@@ -82,4 +83,17 @@ for size in ('desktop', 'tablet', 'mobile'):
         require((ROOT / 'banners' / f'banner_{size}_{time}.jpeg').is_file(), 'Missing banner variant')
 require((ROOT / 'profile_picture.jpg').is_file(), 'Missing profile image')
 require((ROOT / 'content/about.md').is_file(), 'Missing biography')
-print('HTML references and all banner variants valid.')
+# CSS paths resolve relative to their stylesheet, not index.html.
+# Supports quoted/unquoted url() values used by this site's static stylesheets.
+for stylesheet in (ROOT / 'assets').glob('*.css'):
+    css = re.sub(r'/\*.*?\*/', '', stylesheet.read_text(encoding='utf-8'), flags=re.S)
+    for match in re.finditer(r"url\(\s*(?:'([^']*)'|\"([^\"]*)\"|([^)]*?))\s*\)", css, re.I):
+        value = next(group for group in match.groups() if group is not None).strip()
+        require(bool(value), f'Empty CSS URL in {stylesheet.name}')
+        parsed = urlsplit(value)
+        if parsed.scheme or parsed.netloc or not parsed.path:
+            continue
+        path = unquote(parsed.path)
+        target = ROOT / path.lstrip('/') if path.startswith('/') else stylesheet.parent / path
+        require(target.is_file(), f'Missing CSS asset in {stylesheet.name}: {value}')
+print('HTML/CSS references and all banner variants valid.')

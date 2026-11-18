@@ -3,6 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        // Apply the theme before styles load to avoid a light-theme flash.
+        (function() {
+            let theme;
+            try { theme = localStorage.getItem('theme'); } catch { /* Storage may be blocked. */ }
+            if (theme !== 'light' && theme !== 'dark') {
+                theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+        })();
+    </script>
+    <noscript><style>
+        .theme-toggle, .banner-time-selector, .publications-filters, .show-more-container { display: none; }
+    </style></noscript>
     <title>Thomas Pierrot - Staff Research Scientist</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,11 +38,18 @@
     </nav>
 
     <div class="banner">
-        <picture>
-            <source media="(min-width: 1200px)" srcset="banners/banner_desktop_day.jpeg" id="banner-desktop">
-            <source media="(min-width: 768px)" srcset="banners/banner_tablet_day.jpeg" id="banner-tablet">
-            <img src="banners/banner_mobile_day.jpeg" alt="NYC skyline with neural network overlay" id="banner-mobile">
+        <picture id="banner-picture" hidden>
+            <source media="(min-width: 1200px)" id="banner-desktop">
+            <source media="(min-width: 768px)" id="banner-tablet">
+            <img alt="NYC skyline with neural network overlay" id="banner-mobile">
         </picture>
+        <noscript>
+            <picture>
+                <source media="(min-width: 1200px)" srcset="banners/banner_desktop_day.jpeg">
+                <source media="(min-width: 768px)" srcset="banners/banner_tablet_day.jpeg">
+                <img src="banners/banner_mobile_day.jpeg" alt="NYC skyline with neural network overlay">
+            </picture>
+        </noscript>
         <div class="banner-time-selector">
             <button class="time-btn" data-time="morning" aria-label="Morning banner" aria-pressed="false" title="Morning (7-10am)">
                 <i class="fa-regular fa-circle"></i>
@@ -65,8 +86,8 @@
     <section id="about">
         <div class="section-content">
             <h2>About</h2>
-            <div id="about-content" aria-busy="true">
-                <p class="content-status" role="status">Loading about…</p>
+            <div id="about-content">
+                <p class="content-status" role="status">Enable JavaScript to load about.</p>
             </div>
 
             <div class="about-columns">
@@ -146,8 +167,8 @@
         <div class="section-content">
             <h2>News</h2>
             <div class="timeline-h">
-                <div class="timeline-track" id="news-container" aria-busy="true">
-                    <p class="content-status" role="status">Loading news…</p>
+                <div class="timeline-track" id="news-container">
+                    <p class="content-status" role="status">Enable JavaScript to load news.</p>
                 </div>
             </div>
         </div>
@@ -161,8 +182,8 @@
                 <button class="filter-btn" data-filter="bio-ai" aria-pressed="false" aria-controls="publications-container" disabled>Bio + AI</button>
                 <button class="filter-btn" data-filter="fundamental-ai" aria-pressed="false" aria-controls="publications-container" disabled>Fundamental AI</button>
             </div>
-            <div id="publications-container" aria-busy="true">
-                <p class="content-status" role="status">Loading publications…</p>
+            <div id="publications-container">
+                <p class="content-status" role="status">Enable JavaScript to load publications.</p>
             </div>
             <div class="show-more-container">
                 <button class="show-more-btn hidden" id="show-more-btn" aria-expanded="false" aria-controls="publications-container" disabled>
@@ -177,14 +198,13 @@
         <div class="section-content">
             <h2>Talks</h2>
             <div class="talks-track-wrapper">
-                <div class="talks-track" id="talks-container" aria-busy="true">
-                    <p class="content-status" role="status">Loading talks…</p>
+                <div class="talks-track" id="talks-container">
+                    <p class="content-status" role="status">Enable JavaScript to load talks.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <noscript><p class="content-status">Enable JavaScript to load the biography, news, publications, and talks.</p></noscript>
     <script src="assets/site.js" defer></script>
 </body>
 </html>

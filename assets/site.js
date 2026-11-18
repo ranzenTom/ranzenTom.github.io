@@ -25,6 +25,15 @@ function localToday() {
     return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
 }
 
+// Set loading states only when JavaScript actually runs.
+for (const [id, label] of Object.entries({
+    'about-content': 'biography', 'news-container': 'news',
+    'publications-container': 'publications', 'talks-container': 'talks'
+})) {
+    showStatus(id, `Loading ${label}…`);
+    document.getElementById(id).setAttribute('aria-busy', 'true');
+}
+
 // Banner time-of-day logic with manual override
 (function() {
     const timeButtons = document.querySelectorAll('.time-btn');
@@ -34,6 +43,8 @@ function localToday() {
         document.getElementById('banner-desktop').srcset = `banners/banner_desktop_${timeOfDay}.jpeg`;
         document.getElementById('banner-tablet').srcset = `banners/banner_tablet_${timeOfDay}.jpeg`;
         document.getElementById('banner-mobile').src = `banners/banner_mobile_${timeOfDay}.jpeg`;
+
+        document.getElementById('banner-picture').hidden = false;
 
         // Update active state on buttons
         timeButtons.forEach(function(btn) {

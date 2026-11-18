@@ -35,7 +35,7 @@ python3 scripts/validate.py
 node --check assets/site.js
 ```
 
-The validator checks content fields, URLs, dates, local HTML references, fragment targets, and banner variants. It does not check external link availability or factual accuracy. GitHub Actions runs these checks on pushes and pull requests.
+The validator checks content fields, URLs, dates, local HTML and CSS references, fragment targets, and banner variants. It does not check external link availability or factual accuracy. GitHub Actions runs these checks on pull requests and pushes to `main`.
 
 Before merging, preview at desktop and narrow mobile widths and check:
 
@@ -44,6 +44,6 @@ Before merging, preview at desktop and narrow mobile widths and check:
 3. Each publication filter and Show More/Show Less work, including their keyboard focus and selected/expanded state.
 4. Text remains readable without clipping at enlarged text sizes; reduced-motion settings disable animated scrolling and transitions.
 5. Block a content request in browser developer tools and reload: that section displays a useful error; publication controls stay disabled when publications fail. Empty arrays display an empty state.
-6. With JavaScript disabled, the default banner and static profile remain visible and the page explains why dynamic content is unavailable.
+6. With JavaScript disabled, the default banner and static profile remain visible, section messages explain why content is unavailable, and script-dependent controls are hidden. With JavaScript enabled, only the time-selected banner has an image source; the default exists only in a `noscript` fallback.
 
 This cleanup preserves the existing content. Biography, publication, news, and talk refreshes belong in a separate issue.
