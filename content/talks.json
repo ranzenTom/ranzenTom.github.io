@@ -7,7 +7,7 @@
       "date": "May 26, 2026",
       "link": "https://meetings.cshl.edu/meetings.aspx?meet=SYMP",
       "type": "presentation",
-      "status": "upcoming"
+      "dateISO": "2026-05-26"
     },
     {
       "venue": "Kipoi Seminar",
@@ -15,7 +15,8 @@
       "location": "Online",
       "date": "Aug 12, 2024",
       "video": "https://www.youtube.com/watch?v=09pXsXCAw7E",
-      "type": "video"
+      "type": "video",
+      "dateISO": "2024-08-12"
     },
     {
       "venue": "MLCB",
@@ -23,7 +24,8 @@
       "location": "Seattle, WA, USA",
       "date": "Oct 6, 2024",
       "video": "https://www.youtube.com/watch?v=KKhtWU-eriY",
-      "type": "video"
+      "type": "video",
+      "dateISO": "2024-10-06"
     },
     {
       "venue": "InstaDeep US Promotion Video",
@@ -31,7 +33,8 @@
       "location": "Online",
       "date": "July 11, 2022",
       "video": "https://www.youtube.com/watch?v=TtAmWl9lTIU",
-      "type": "video"
+      "type": "video",
+      "dateISO": "2022-07-11"
     },
     {
       "venue": "InstaDeep 10 years Promotion Video",
@@ -39,7 +42,8 @@
       "location": "Online",
       "date": "Aug 3, 2024",
       "video": "https://www.youtube.com/watch?v=wxZ9ERqzc-E",
-      "type": "video"
+      "type": "video",
+      "dateISO": "2024-08-03"
     },
     {
       "venue": "Mila",
@@ -47,7 +51,8 @@
       "location": "Montreal, Canada",
       "date": "February 3, 2025",
       "link": "https://www.youtube.com/watch?v=u9TwHINqd1o",
-      "type": "presentation"
+      "type": "presentation",
+      "dateISO": "2025-02-03"
     },
     {
       "venue": "Cold Spring Harbor Asia",
@@ -55,7 +60,8 @@
       "location": "Suzhou, China",
       "date": "October 15, 2025",
       "link": "https://www.csh-asia.org/?content/2767",
-      "type": "presentation"
+      "type": "presentation",
+      "dateISO": "2025-10-15"
     },
     {
       "venue": "Cold Spring Harbor Laboratories",
@@ -63,7 +69,8 @@
       "location": "Cold Spring Harbor, NY, USA",
       "date": "Nov 5, 2025",
       "link": "https://meetings.cshl.edu/meetings",
-      "type": "presentation"
+      "type": "presentation",
+      "dateISO": "2025-11-05"
     },
     {
       "venue": "MBZUAI Workshop",
@@ -71,7 +78,8 @@
       "location": "Paris, France",
       "date": "February 22, 2025",
       "link": "https://mbzuai.ac.ae/event/mbzuai-workshop-2025/",
-      "type": "presentation"
+      "type": "presentation",
+      "dateISO": "2025-02-22"
     },
     {
       "venue": "NVIDIA GTC",
@@ -79,7 +87,8 @@
       "location": "San Jose, CA, USA",
       "date": "March 21, 2023",
       "link": "https://www.linkedin.com/posts/instadeep_nvidia-gtc-nvidiagtc-activity-7043891501621231616-kYjJ",
-      "type": "presentation"
+      "type": "presentation",
+      "dateISO": "2023-03-21"
     }
   ]
 }
