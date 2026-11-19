@@ -41,13 +41,13 @@
         <picture id="banner-picture" hidden>
             <source media="(min-width: 1200px)" id="banner-desktop">
             <source media="(min-width: 768px)" id="banner-tablet">
-            <img alt="NYC skyline with neural network overlay" id="banner-mobile">
+            <img alt="Illustrated Boston skyline across the Charles River" id="banner-mobile">
         </picture>
         <noscript>
             <picture>
                 <source media="(min-width: 1200px)" srcset="banners/banner_desktop_day.jpeg">
                 <source media="(min-width: 768px)" srcset="banners/banner_tablet_day.jpeg">
-                <img src="banners/banner_mobile_day.jpeg" alt="NYC skyline with neural network overlay">
+                <img src="banners/banner_mobile_day.jpeg" alt="Illustrated Boston skyline across the Charles River">
             </picture>
         </noscript>
         <div class="banner-time-selector">
@@ -91,6 +91,46 @@
             </div>
 
             <div class="about-columns">
+                <!-- Experience Column -->
+                <div class="about-column">
+                    <h3 class="about-column-title">Experience</h3>
+                    <div class="about-entries">
+                        <div class="about-entry">
+                            <div class="entry-logo">
+                                <i class="fa-solid fa-stethoscope"></i>
+                            </div>
+                            <div class="entry-details">
+                                <p class="entry-institution">Bios Life</p>
+                                <p class="entry-role">Head of AI</p>
+                                <p class="entry-date">January 2026 – Present</p>
+                                <p class="entry-location"><i class="fa-solid fa-location-dot"></i> Cambridge, MA, USA</p>
+                            </div>
+                        </div>
+                        <div class="about-entry">
+                            <div class="entry-logo">
+                                <i class="fa-solid fa-dna"></i>
+                            </div>
+                            <div class="entry-details">
+                                <p class="entry-institution">InstaDeep (BioNTech)</p>
+                                <p class="entry-role">Head of Genomics AI Research</p>
+                                <p class="entry-date">2018 – 2026</p>
+                                <p class="entry-location"><i class="fa-solid fa-location-dot"></i> New York, New York, USA</p>
+                            </div>
+                        </div>
+                        <div class="about-entry">
+                            <div class="entry-logo">
+                                <i class="fa-solid fa-robot"></i>
+                            </div>
+                            <div class="entry-details">
+                                <p class="entry-institution">ISIR</p>
+                                <p class="entry-role">AI Researcher</p>
+                                <p class="entry-date">2018</p>
+                                <p class="entry-location"><i class="fa-solid fa-location-dot"></i> Paris, France</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Education Column -->
                 <div class="about-column">
                     <h3 class="about-column-title">Education</h3>
@@ -130,47 +170,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Experience Column -->
-                <div class="about-column">
-                    <h3 class="about-column-title">Experience</h3>
-                    <div class="about-entries">
-                        <div class="about-entry">
-                            <div class="entry-logo">
-                                <i class="fa-solid fa-brain"></i>
-                            </div>
-                            <div class="entry-details">
-                                <p class="entry-institution">Bios Life</p>
-                                <p class="entry-role">Head of AI</p>
-                                <p class="entry-date">January 2026 – Present</p>
-                                <p class="entry-location"><i class="fa-solid fa-location-dot"></i> Cambridge, MA, USA</p>
-                            </div>
-                        </div>
-                        <div class="about-entry">
-                            <div class="entry-logo">
-                                <i class="fa-solid fa-dna"></i>
-                            </div>
-                            <div class="entry-details">
-                                <p class="entry-institution">InstaDeep (BioNTech)</p>
-                                <p class="entry-role">Head of Genomics AI Research</p>
-                                <p class="entry-date">January 2025 – January 2026</p>
-                                <p class="entry-date">Total InstaDeep tenure: November 2018 – January 2026</p>
-                                <p class="entry-location"><i class="fa-solid fa-location-dot"></i> New York, USA</p>
-                            </div>
-                        </div>
-                        <div class="about-entry">
-                            <div class="entry-logo">
-                                <i class="fa-solid fa-robot"></i>
-                            </div>
-                            <div class="entry-details">
-                                <p class="entry-institution">ISIR</p>
-                                <p class="entry-role">AI Researcher</p>
-                                <p class="entry-date">2018</p>
-                                <p class="entry-location"><i class="fa-solid fa-location-dot"></i> Paris, France</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -183,6 +182,7 @@
                     <noscript><p class="content-status" role="status">Enable JavaScript to load news.</p></noscript>
                 </div>
             </div>
+            <div class="show-more-container"><button class="show-more-btn" id="news-toggle" aria-expanded="false" aria-controls="news-container" hidden>View older news</button></div>
         </div>
     </section>
 
@@ -214,8 +214,14 @@
                     <noscript><p class="content-status" role="status">Enable JavaScript to load talks.</p></noscript>
                 </div>
             </div>
+            <div class="show-more-container"><button class="show-more-btn" id="talks-toggle" aria-expanded="false" aria-controls="talks-container" hidden>Show more talks</button></div>
         </div>
     </section>
+
+    <footer class="site-footer">
+        <span>Thomas Pierrot</span>
+        <div><a href="mailto:tvg.pierrot@gmail.com">Email</a><a href="https://www.linkedin.com/in/thomas-pierrot-120a43128/">LinkedIn</a></div>
+    </footer>
 
     <script src="assets/site.js" defer></script>
 </body>

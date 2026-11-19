@@ -1,11 +1,18 @@
 {
   "news": [
     {
+      "date": "Aug 2026",
+      "description": "Bios Life emerges from stealth with $25M in seed funding and a partnership with Tempus to advance personalized cancer screening and surveillance.",
+      "link": "https://www.synbiobeta.com/read/bios-life-emerges-from-stealth-with-25m-and-partners-with-tempus-to-personalize-cancer-screening-and-surveillance",
+      "linkTitle": "Read the announcement on SynBioBeta",
+      "linkIcon": "fa-solid fa-newspaper"
+    },
+    {
       "date": "Dec 2025",
       "description": "We're excited to introduce Nucleotide Transformer v3 (NTv3) - InstaDeep’s new foundation model for long-range multi-species genomics 🎉",
-      "link": "",
-      "linkTitle": "View on LinkedIn",
-      "linkIcon": "fa-brands fa-linkedin-in"
+      "link": "https://huggingface.co/spaces/InstaDeepAI/ntv3",
+      "linkTitle": "Explore the NTv3 demo on Hugging Face",
+      "linkIcon": "fa-solid fa-arrow-up-right-from-square"
     },
     {
       "date": "Oct 2025",

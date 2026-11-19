@@ -1,6 +1,20 @@
 {
   "publications": [
     {
+      "title": "Bimodal masked language modeling for bulk RNA-seq and DNA methylation representation learning",
+      "authors": "Maxence Gélard, Hakim Benkirane, Thomas Pierrot, Guillaume Richard, Paul-Henry Cournède.",
+      "venue": "ICML",
+      "year": 2026,
+      "category": "bio-ai",
+      "highlights": [],
+      "links": [
+        {
+          "text": "Paper",
+          "url": "https://icml.cc/virtual/2026/poster/62539"
+        }
+      ]
+    },
+    {
       "title": "Are genomic language models all you need? Exploring genomic language models on protein downstream tasks",
       "authors": "Sam Boshar, Evan Trop, Bernardo P. de Almeida, Liviu Copoiu, Thomas Pierrot.",
       "venue": "Bioinformatics",
@@ -71,10 +85,10 @@
       ]
     },
     {
-      "title": "A foundational model for joint sequence-function multi-species modeling at scale for long-range genomic prediction",
+      "title": "A multispecies foundation model for genome function prediction, gene annotation and sequence design",
       "authors": "Sam Boshar, Benjamin Evans, Ziqi Tang, ..., Thomas Pierrot.",
-      "venue": "bioRxiv",
-      "year": 2025,
+      "venue": "Under review (Nature)",
+      "year": 2026,
       "category": "bio-ai",
       "highlights": [],
       "links": [
@@ -90,7 +104,9 @@
       "venue": "Nature Machine Intelligence",
       "year": 2025,
       "category": "bio-ai",
-      "highlights": ["Cover Article"],
+      "highlights": [
+        "Cover Article"
+      ],
       "links": [
         {
           "text": "Paper",
@@ -174,7 +190,9 @@
       "venue": "ICLR",
       "year": 2023,
       "category": "fundamental-ai",
-      "highlights": ["Spotlight"],
+      "highlights": [
+        "Spotlight"
+      ],
       "links": [
         {
           "text": "Paper",
@@ -244,7 +262,9 @@
       "venue": "NeurIPS",
       "year": 2019,
       "category": "fundamental-ai",
-      "highlights": ["Spotlight"],
+      "highlights": [
+        "Spotlight"
+      ],
       "links": [
         {
           "text": "Paper",
