@@ -72,7 +72,7 @@ h1 { font-family: 'Playfair Display', Georgia, serif; }
     pointer-events: none;
 }
 
-/* Profile Container - keeps profile header centered with banner overlap */
+/* Profile Container - centers the compact profile header below the banner */
 .profile-container {
     max-width: var(--container-width);
     margin: 0 auto;
@@ -638,14 +638,15 @@ h2 {
 /* About Section - Education & Experience */
 .about-columns {
     display: flex;
-    gap: 60px;
-    margin-top: 40px;
+    gap: 48px;
+    margin-top: 32px;
     justify-content: center;
 }
 
 .about-column {
     flex: 1;
-    max-width: 380px;
+    max-width: 420px;
+    min-width: 0;
 }
 
 .about-column-title {
@@ -655,7 +656,7 @@ h2 {
     text-transform: uppercase;
     letter-spacing: 0.12em;
     color: var(--text-muted);
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     text-align: left;
 }
 
@@ -670,9 +671,9 @@ h2 {
 .about-entries::before {
     content: '';
     position: absolute;
-    left: 30px;
-    top: 60px;
-    bottom: 30px;
+    left: 22px;
+    top: 44px;
+    bottom: 28px;
     width: 2px;
     background: linear-gradient(to bottom, var(--border-color), transparent);
     border-radius: 1px;
@@ -681,17 +682,17 @@ h2 {
 .about-entry {
     display: flex;
     align-items: flex-start;
-    gap: 20px;
-    padding: 12px 0;
+    gap: 14px;
+    padding: 10px 0;
     position: relative;
 }
 
 .entry-logo {
-    width: 60px;
-    height: 60px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--bg-alt) 0%, var(--card-bg) 100%);
-    border: 2px solid var(--border-color);
+    border: 1px solid var(--border-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -712,7 +713,7 @@ h2 {
 }
 
 .entry-logo i {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     color: var(--accent-color);
     opacity: 0.6;
 }
@@ -734,7 +735,7 @@ h2 {
     display: flex;
     flex-direction: column;
     gap: 2px;
-    padding-top: 8px;
+    padding-top: 0;
     text-align: left;
 }
 
@@ -926,14 +927,10 @@ h2 {
 }
 
 /* Responsive for Talks */
-@media (max-width: 900px) {
-    .talk-card {
-        }
-}
 
 @media (max-width: 600px) {
     .talk-card {
-            padding: 18px;
+        padding: 18px;
         gap: 12px;
     }
     .talk-title {
@@ -979,15 +976,6 @@ section {
     }
     .timeline-track {
         gap: 20px;
-    }
-    .timeline-card {
-        }
-    /* About columns responsive */
-    .about-columns {
-        gap: 40px;
-    }
-    .about-column {
-        max-width: 320px;
     }
 }
 
@@ -1072,29 +1060,13 @@ section {
     /* About columns mobile - stack vertically */
     .about-columns {
         flex-direction: column;
-        gap: 32px;
         align-items: center;
     }
     .about-column {
-        max-width: 100%;
         width: 100%;
     }
     .about-column-title {
         text-align: center;
-    }
-    .entry-logo {
-        width: 50px;
-        height: 50px;
-    }
-    .entry-logo i {
-        font-size: 1.2rem;
-    }
-    .about-entries::before {
-        left: 25px;
-        top: 50px;
-    }
-    .entry-details {
-        padding-top: 4px;
     }
     .entry-institution {
         font-size: 0.95rem;
@@ -1118,14 +1090,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--accent-color); 
 
 /* Editorial spacing and compact career details */
 #about-content { max-width: 70ch; margin: 0 auto; font-size: 16px; }
-.about-columns { gap: 48px; margin-top: 32px; }
-.about-column { max-width: 420px; min-width: 0; }
-.about-column-title { margin-bottom: 16px; }
-.about-entry { gap: 14px; padding: 10px 0; }
-.entry-logo { width: 44px; height: 44px; border-width: 1px; }
-.entry-logo i { font-size: 1.1rem; }
-.entry-details { padding-top: 0; }
-.about-entries::before { left: 22px; top: 44px; bottom: 28px; }
+
 .publications-filters { margin: 24px 0; }
 .paper { margin-bottom: 22px; }
 .paper-title { line-height: 1.4; }

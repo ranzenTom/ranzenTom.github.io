@@ -142,7 +142,7 @@ for (const [id, label] of Object.entries({
     function handleScroll() {
         nav.classList.toggle('scrolled', window.scrollY > 100);
         const marker = nav.offsetHeight + 80;
-        let activeId = '';
+        let activeId = sections[0].id;
         sections.forEach(function(section) {
             if (section.getBoundingClientRect().top <= marker) activeId = section.id;
         });
