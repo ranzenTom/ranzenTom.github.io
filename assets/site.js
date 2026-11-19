@@ -139,42 +139,30 @@ for (const [id, label] of Object.entries({
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('section[id]');
 
-    // Add scrolled class when page is scrolled
     function handleScroll() {
-        if (window.scrollY > 100) {
-            nav.classList.add('scrolled');
-        } else {
-            nav.classList.remove('scrolled');
-        }
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Check initial state
-
-    // Scrollspy using IntersectionObserver
-    const observerOptions = {
-        root: null,
-        rootMargin: '-20% 0px -60% 0px',
-        threshold: 0
-    };
-
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-                const id = entry.target.getAttribute('id');
-                navLinks.forEach(function(link) {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === '#' + id) {
-                        link.classList.add('active');
-                    }
-                });
-            }
+        nav.classList.toggle('scrolled', window.scrollY > 100);
+        const marker = nav.offsetHeight + 80;
+        let activeId = sections[0].id;
+        sections.forEach(function(section) {
+            if (section.getBoundingClientRect().top <= marker) activeId = section.id;
         });
-    }, observerOptions);
-
-    sections.forEach(function(section) {
-        observer.observe(section);
-    });
+        if (window.scrollY > 0 && window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+            activeId = sections[sections.length - 1].id;
+        }
+        navLinks.forEach(function(link) {
+            const active = link.getAttribute('href') === '#' + activeId;
+            link.classList.toggle('active', active);
+            if (active) link.setAttribute('aria-current', 'location');
+            else link.removeAttribute('aria-current');
+        });
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
+    if (typeof ResizeObserver !== 'undefined') {
+        const observer = new ResizeObserver(handleScroll);
+        sections.forEach(function(section) { observer.observe(section); });
+    }
+    handleScroll();
 
     // Smooth scroll with offset for nav links
     navLinks.forEach(function(link) {
@@ -216,6 +204,25 @@ for (const [id, label] of Object.entries({
         });
 })();
 
+// Keep recent items visible, with an accessible archive toggle.
+function setupCollectionToggle(container, buttonId, limit, moreLabel) {
+    const button = document.getElementById(buttonId);
+    const cards = Array.from(container.children);
+    if (cards.length <= limit) return;
+    button.hidden = false;
+    function render(expanded) {
+        cards.forEach(function(card, index) { card.hidden = !expanded && index >= limit; });
+        button.setAttribute('aria-expanded', String(expanded));
+        button.textContent = expanded ? 'Show less' : moreLabel;
+    }
+    render(false);
+    button.addEventListener('click', function() {
+        const expanded = button.getAttribute('aria-expanded') !== 'true';
+        render(expanded);
+        if (!expanded) scrollToSection(container.closest('section'));
+    });
+}
+
 // Load and render news from JSON
 (function() {
     fetch('content/news.json')
@@ -234,6 +241,7 @@ for (const [id, label] of Object.entries({
                 const card = createNewsCard(newsItem);
                 container.appendChild(card);
             });
+            setupCollectionToggle(container, 'news-toggle', 3, 'View older news');
         })
         .catch(function(error) {
             console.error('Error loading news:', error);
@@ -389,18 +397,21 @@ for (const [id, label] of Object.entries({
         paper.className = 'paper';
         paper.setAttribute('data-category', publication.category);
 
-        // Create header with title and links
+        // Create header with linked title, venue, and year
         const header = document.createElement('div');
         header.className = 'paper-header';
 
-        const title = document.createElement('div');
+        const title = document.createElement('a');
         title.className = 'paper-title';
         title.textContent = publication.title;
+        title.href = publication.links[0].url;
+        title.target = '_blank';
+        title.rel = 'noopener noreferrer';
 
         const links = document.createElement('div');
         links.className = 'paper-links';
 
-        publication.links.forEach(function(link) {
+        publication.links.slice(1).forEach(function(link) {
             const anchor = document.createElement('a');
             anchor.href = link.url;
             anchor.textContent = link.text;
@@ -410,7 +421,7 @@ for (const [id, label] of Object.entries({
         });
 
         header.appendChild(title);
-        header.appendChild(links);
+
 
         // Create authors meta
         const meta = document.createElement('div');
@@ -423,7 +434,7 @@ for (const [id, label] of Object.entries({
             } else { meta.appendChild(document.createTextNode(part)); }
         });
 
-        // Create venue info (Option B style)
+        // Place publication metadata at the top right
         const venueInfo = document.createElement('div');
         venueInfo.className = 'paper-venue-info';
 
@@ -435,21 +446,26 @@ for (const [id, label] of Object.entries({
         const yearText = document.createElement('span');
         yearText.className = 'year-text';
         yearText.textContent = publication.year;
-        venueInfo.appendChild(yearText);
+        venueInfo.insertBefore(yearText, venueBadge);
 
+        header.appendChild(venueInfo);
+
+        const highlights = document.createElement('div');
+        highlights.className = 'paper-highlights';
         if (publication.highlights && publication.highlights.length > 0) {
             publication.highlights.forEach(function(highlight) {
                 const highlightItem = document.createElement('span');
                 highlightItem.className = 'highlight-item';
                 const icon = highlight.includes('Cover') ? '🏆' : '⭐';
                 highlightItem.textContent = icon + ' ' + highlight;
-                venueInfo.appendChild(highlightItem);
+                highlights.appendChild(highlightItem);
             });
         }
 
         paper.appendChild(header);
         paper.appendChild(meta);
-        paper.appendChild(venueInfo);
+        if (highlights.childElementCount) paper.appendChild(highlights);
+        if (links.childElementCount) paper.appendChild(links);
 
         return paper;
     }
@@ -478,6 +494,7 @@ for (const [id, label] of Object.entries({
                 const card = createTalkCard(talk);
                 container.appendChild(card);
             });
+            setupCollectionToggle(container, 'talks-toggle', 4, 'Show more talks');
         })
         .catch(function(error) {
             console.error('Error loading talks:', error);

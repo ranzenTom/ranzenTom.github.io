@@ -17,7 +17,7 @@
     <noscript><style>
         .theme-toggle, .banner-time-selector, .publications-filters, .show-more-container { display: none; }
     </style></noscript>
-    <title>Thomas Pierrot - Staff Research Scientist</title>
+    <title>Thomas Pierrot - Head of AI at Bios Life</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
@@ -41,13 +41,13 @@
         <picture id="banner-picture" hidden>
             <source media="(min-width: 1200px)" id="banner-desktop">
             <source media="(min-width: 768px)" id="banner-tablet">
-            <img alt="NYC skyline with neural network overlay" id="banner-mobile">
+            <img alt="Illustrated Boston skyline across the Charles River" id="banner-mobile">
         </picture>
         <noscript>
             <picture>
                 <source media="(min-width: 1200px)" srcset="banners/banner_desktop_day.jpeg">
                 <source media="(min-width: 768px)" srcset="banners/banner_tablet_day.jpeg">
-                <img src="banners/banner_mobile_day.jpeg" alt="NYC skyline with neural network overlay">
+                <img src="banners/banner_mobile_day.jpeg" alt="Illustrated Boston skyline across the Charles River">
             </picture>
         </noscript>
         <div class="banner-time-selector">
@@ -71,7 +71,7 @@
             <div class="profile-pic"></div>
             <div class="profile-info">
                 <h1>Thomas Pierrot</h1>
-                <p>Staff Research Scientist @ InstaDeep</p>
+                <p>Head of AI @ Bios Life</p>
                 <div class="social-links">
                     <a href="https://scholar.google.com/citations?user=KZJH9swAAAAJ&amp;hl=en"><i class="fa-solid fa-graduation-cap"></i> Google Scholar</a>
                     <a href="https://github.com/ranzenTom"><i class="fa-brands fa-github"></i> GitHub</a>
@@ -91,6 +91,46 @@
             </div>
 
             <div class="about-columns">
+                <!-- Experience Column -->
+                <div class="about-column">
+                    <h3 class="about-column-title">Experience</h3>
+                    <div class="about-entries">
+                        <div class="about-entry">
+                            <div class="entry-logo">
+                                <i class="fa-solid fa-stethoscope"></i>
+                            </div>
+                            <div class="entry-details">
+                                <p class="entry-institution">Bios Life</p>
+                                <p class="entry-role">Head of AI</p>
+                                <p class="entry-date">January 2026 – Present</p>
+                                <p class="entry-location"><i class="fa-solid fa-location-dot"></i> Cambridge, MA, USA</p>
+                            </div>
+                        </div>
+                        <div class="about-entry">
+                            <div class="entry-logo">
+                                <i class="fa-solid fa-dna"></i>
+                            </div>
+                            <div class="entry-details">
+                                <p class="entry-institution">InstaDeep (BioNTech)</p>
+                                <p class="entry-role">Head of Genomics AI Research</p>
+                                <p class="entry-date">2018 – 2026</p>
+                                <p class="entry-location"><i class="fa-solid fa-location-dot"></i> New York, New York, USA</p>
+                            </div>
+                        </div>
+                        <div class="about-entry">
+                            <div class="entry-logo">
+                                <i class="fa-solid fa-robot"></i>
+                            </div>
+                            <div class="entry-details">
+                                <p class="entry-institution">ISIR</p>
+                                <p class="entry-role">AI Researcher</p>
+                                <p class="entry-date">2018</p>
+                                <p class="entry-location"><i class="fa-solid fa-location-dot"></i> Paris, France</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Education Column -->
                 <div class="about-column">
                     <h3 class="about-column-title">Education</h3>
@@ -130,35 +170,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Experience Column -->
-                <div class="about-column">
-                    <h3 class="about-column-title">Experience</h3>
-                    <div class="about-entries">
-                        <div class="about-entry">
-                            <div class="entry-logo">
-                                <i class="fa-solid fa-dna"></i>
-                            </div>
-                            <div class="entry-details">
-                                <p class="entry-institution">InstaDeep (BioNTech)</p>
-                                <p class="entry-role">Staff Research Scientist</p>
-                                <p class="entry-date">2018 – Present</p>
-                                <p class="entry-location"><i class="fa-solid fa-location-dot"></i> New York, USA</p>
-                            </div>
-                        </div>
-                        <div class="about-entry">
-                            <div class="entry-logo">
-                                <i class="fa-solid fa-robot"></i>
-                            </div>
-                            <div class="entry-details">
-                                <p class="entry-institution">ISIR</p>
-                                <p class="entry-role">AI Researcher</p>
-                                <p class="entry-date">2018</p>
-                                <p class="entry-location"><i class="fa-solid fa-location-dot"></i> Paris, France</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -166,11 +177,10 @@
     <section id="news">
         <div class="section-content">
             <h2>News</h2>
-            <div class="timeline-h">
-                <div class="timeline-track" id="news-container">
-                    <noscript><p class="content-status" role="status">Enable JavaScript to load news.</p></noscript>
-                </div>
+            <div class="timeline-track" id="news-container">
+                <noscript><p class="content-status" role="status">Enable JavaScript to load news.</p></noscript>
             </div>
+            <div class="show-more-container"><button class="show-more-btn" id="news-toggle" aria-expanded="false" aria-controls="news-container" hidden>View older news</button></div>
         </div>
     </section>
 
@@ -197,13 +207,17 @@
     <section id="talks">
         <div class="section-content">
             <h2>Talks</h2>
-            <div class="talks-track-wrapper">
-                <div class="talks-track" id="talks-container">
-                    <noscript><p class="content-status" role="status">Enable JavaScript to load talks.</p></noscript>
-                </div>
+            <div class="talks-track" id="talks-container">
+                <noscript><p class="content-status" role="status">Enable JavaScript to load talks.</p></noscript>
             </div>
+            <div class="show-more-container"><button class="show-more-btn" id="talks-toggle" aria-expanded="false" aria-controls="talks-container" hidden>Show more talks</button></div>
         </div>
     </section>
+
+    <footer class="site-footer">
+        <span>Thomas Pierrot</span>
+        <div><a href="mailto:tvg.pierrot@gmail.com">Email</a><a href="https://www.linkedin.com/in/thomas-pierrot-120a43128/">LinkedIn</a></div>
+    </footer>
 
     <script src="assets/site.js" defer></script>
 </body>
