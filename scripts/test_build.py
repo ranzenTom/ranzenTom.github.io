@@ -1,5 +1,6 @@
 """Regression checks for generated content and discovery metadata."""
 import json
+import re
 import unittest
 from html.parser import HTMLParser
 from unittest.mock import patch
@@ -30,7 +31,11 @@ class BuildTests(unittest.TestCase):
             records = json.loads((ROOT / f'content/{group}.json').read_text(encoding='utf-8'))[group]
             for record in records:
                 self.assertIn(record[field], text)
-        self.assertIn('published scientific evidence', text)
+        biography = (ROOT / 'content/about.md').read_text(encoding='utf-8')
+        for paragraph in re.split(r'\n\n+', biography.strip()):
+            source = ContentParser()
+            source.feed(paragraph.replace('**', ''))
+            self.assertIn(''.join(source.text), text)
         for tag, attrs in page.attrs:
             if attrs.get('class') in ('paper', 'timeline-card', 'talk-card'):
                 self.assertNotIn('hidden', attrs)
@@ -44,8 +49,12 @@ class BuildTests(unittest.TestCase):
         self.assertTrue(any(t == 'meta' and a.get('name') == 'description' and a.get('content') for t, a in page.attrs))
         person = next(json.loads(t) for t in page.text if t.startswith('{"@context"'))
         self.assertEqual(person['@type'], 'Person')
-        self.assertEqual(person['jobTitle'], 'Head of AI')
-        self.assertEqual(person['worksFor']['name'], 'Bios Life')
+        template = (ROOT / 'templates/index.html').read_text(encoding='utf-8')
+        for field, css_class in [('jobTitle', 'entry-role'), ('employer', 'entry-institution')]:
+            source = ContentParser()
+            source.feed(re.search(r'<p class="' + css_class + r'">(.*?)</p>', template).group(1))
+            actual = person['worksFor']['name'] if field == 'employer' else person[field]
+            self.assertEqual(actual, ''.join(source.text))
         links = {a.get('href') for t, a in page.attrs if t == 'a'}
         self.assertTrue(set(person['sameAs']) <= links)
         urls = ET.parse(ROOT / 'sitemap.xml').findall('.//{http://www.sitemaps.org/schemas/sitemap/0.9}loc')
@@ -61,7 +70,8 @@ class BuildTests(unittest.TestCase):
         self.assertIn('&lt;Code&gt;', result)
         self.assertIn('<strong>Thomas Pierrot</strong>', result)
         self.assertIn('href="https://example.com/?a=1&amp;b=2"', result)
-        self.assertNotIn('timeline-link', news_card({'date': '2026', 'description': '<test>', 'link': ''}))
+        for link in ('', None):
+            self.assertNotIn('timeline-link', news_card({'date': '2026', 'description': '<test>', 'link': link}))
         self.assertIn('&lt;test&gt;', news_card({'date': '2026', 'description': '<test>'}))
 
     def test_empty_collections(self):

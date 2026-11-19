@@ -23,7 +23,7 @@ def status(message):
 
 def news_card(item):
     link = ''
-    if item.get('link', '').strip():
+    if (item.get('link') or '').strip():
         label = esc(item['linkTitle'])
         link = anchor(item['link'], f'<i class="{esc(item["linkIcon"])}" aria-hidden="true"></i>',
                       f' class="timeline-link" title="{label}" aria-label="{label}"')

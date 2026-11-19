@@ -33,9 +33,9 @@ JSON text fields are rendered as text, not HTML. External content links should u
 With Python 3.9+ and Node.js installed:
 
 ```sh
+python3 scripts/validate.py
 python3 scripts/build.py --check
 python3 scripts/test_build.py
-python3 scripts/validate.py
 node --check assets/site.js
 ```
 
@@ -55,10 +55,10 @@ Before merging, preview at desktop and narrow mobile widths and check:
 Edit `content/` files or `templates/index.html`, then run:
 
 ```sh
+python3 scripts/validate.py
 python3 scripts/build.py
 python3 scripts/build.py --check
 python3 scripts/test_build.py
-python3 scripts/validate.py
 node --check assets/site.js
 ```
 
