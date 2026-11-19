@@ -1117,7 +1117,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--accent-color); 
 .banner picture[hidden] { display: none; }
 
 /* Editorial spacing and compact career details */
-#about-content { max-width: 70ch; margin: 0 auto; }
+#about-content { max-width: 70ch; margin: 0 auto; font-size: 16px; }
 .about-columns { gap: 48px; margin-top: 32px; }
 .about-column { max-width: 420px; min-width: 0; }
 .about-column-title { margin-bottom: 16px; }
